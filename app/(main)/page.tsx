@@ -9,15 +9,15 @@ import Tip from '@/app/components/home/Tip';
 
 export default function Home() {
   return (
-    <main className="pt-[80px]">
+    <main className="max-w-[1200px] mx-auto px-[20px] h-[800px]">
       <MainSlider />
-      <ProductList />
+      {/* <ProductList />
       <Subscribe />
       <License />
       <Integration />
       <Promotion />
       <Tip />
-      <Shortcut />
+      <Shortcut /> */}
     </main>
   );
 }

@@ -127,10 +127,10 @@ export default function Header() {
           <div className="max-sm:block hidden">
             <div className="flex justify-start gap-[12px]">
               <button type="button" onClick={() => setIsMenuOpen(true)}>
-                <img src="/images/icons/searchMB.svg" />
+                <img src="/images/icons/ic-24-line-search-gray600.ff41d7e0.svg" />
               </button>
               <button type="button" onClick={() => setIsSideOpen(true)}>
-                <img src="/images/icons/arcodian.svg" />
+                <img src="/images/icons/ic-24-line-list-gray600.a9557c58.svg" />
               </button>
             </div>
           </div>
@@ -232,7 +232,7 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <h1 className="text-[38383d] text-[14px] font-normal">닫기</h1>
-                <img src="/images/icons/close.svg" />
+                <img src="/images/icons/close-icon.ac392cb5.svg" />
               </button>
             </div>
           </>
@@ -421,7 +421,7 @@ export default function Header() {
         </ul>
         <div className="flex items-center gap-[12px] max-sm:hidden">
           <button type="button" onClick={() => setIsMenuOpen(true)}>
-            <img src="/images/icons/search.svg" className="w-[25px]" />
+            <img src="/images/icons/search.808d692a.svg" className="w-[25px]" />
           </button>
           <div className="flex items-center gap-[4px]">
             <Link
