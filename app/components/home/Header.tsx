@@ -120,7 +120,7 @@ export default function Header() {
         <div className="max-sm:flex max-sm:justify-between max-sm:w-full items-center">
           <Link href="/" className="flex gap-[4px] w-[186px]">
             <img
-              src="/images/icons/logo.svg"
+              src="/images/icons/logo-815984.927499af.svg"
               className="w-[116px] max-sm:w-[98px] max-sm:h-[48px]"
             />
           </Link>

@@ -12,17 +12,46 @@
 }
 
 .slider [class*='swiper-button'] {
-  border: 1px solid black;
   align-items: center;
   justify-content: center;
   display: flex;
+  top: 50%;
+  translate: 0 -50%;
+  opacity: 0;
+}
+.slider:hover [class*='swiper-button'] {
+  opacity: 1;
 }
 
 .slider [class*='swiper-button-next'] {
   background-image: url('/images/icons/RightBtn.ff1e6b72.svg');
   background-repeat: no-repeat;
   background-size: cover;
+  width: 44px;
+  right: 40px;
 }
 .slider [class*='swiper-button-next']::after {
   display: none;
+}
+
+.slider [class*='swiper-button-prev'] {
+  background-image: url('/images/icons/LeftBtn.8960a4d3.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 44px;
+  left: 40px;
+}
+.slider [class*='swiper-button-prev']::after {
+  display: none;
+}
+
+.slider [class*='swiper-button-disabled'] {
+  display: none;
+}
+
+/* 모바일분기점 */
+@media (max-width: 767px) {
+  .slider [class*='swiper-button'] {
+    display: none;
+  }
 }
