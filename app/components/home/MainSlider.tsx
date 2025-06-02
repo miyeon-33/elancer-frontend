@@ -12,7 +12,7 @@ import { useState } from 'react';
 export default function MainSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <div className="max-w-[1200px] h-[260px] rounded-[24px] mt-[32px] relative max-sm:mt-0 max-sm:pt-[20px] max-sm:px-[20px]">
+    <div className="max-w-[1200px] h-[260px] rounded-[24px] mt-[32px] relative max-sm:mt-0 max-sm:pt-[20px] max-md:px-[20px] max-sm:px-[20px]">
       <Swiper
         slidesPerView={1}
         pagination={{
