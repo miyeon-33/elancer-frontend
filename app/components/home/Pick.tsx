@@ -9,18 +9,18 @@ import Link from 'next/link';
 
 export default function Pick() {
   return (
-    <div className="max-w-[1200px] max-md:px-[20px] max-sm:px-[20px]">
-      <div className="flex flex-col w-autoitems-start gap-[32px] rounded-[24px] bg-[#fff] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] mb-[80px] pt-[56px] px-[56px]">
-        <div className="flex items-start gap-[32px] w-full max-w-[1200px] overflow-hidden relative">
-          <div className="flex w-[312px] flex-col items-start self-stretch justify-between">
-            <div className="gap-[16px] flex flex-col">
-              <h2 className="self-stretch text-[#1b1c1e] text-[32px] font-bold inline-block">
+    <div className="max-w-[1200px] max-md:px-[20px] max-sm:px-[20px] max-sm:max-w-[768px] max-sm:min-w-[375px]">
+      <div className="flex flex-col w-autoitems-start gap-[32px] rounded-[24px] bg-[#fff] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] mb-[80px] pt-[56px] px-[56px] max-sm:pt-[32px] max-sm:px-[20px] max-sm:pb-[20px]">
+        <div className="flex items-start gap-[32px] w-full max-w-[1200px] overflow-hidden relative max-sm:flex-col">
+          <div className="flex w-[312px] flex-col items-start self-stretch justify-between max-sm:w-full">
+            <div className="gap-[16px] flex flex-col max-sm:gap-[6px] max-sm:items-start">
+              <h2 className="self-stretch text-[#1b1c1e] text-[32px] font-bold inline-block max-sm:text-[20px]">
                 이랜서&nbsp;
                 <span className="text-[#ff6948]">PICK</span>
                 <br />
                 추천 프로젝트 입니다!
               </h2>
-              <p className="text-[#58575e] text-[20px] font-normal inline-block">
+              <p className="text-[#58575e] text-[20px] font-normal inline-block max-sm:text-[14px]">
                 로그인 후 회원정보를 업데이트 하시면
                 <br />더 많은 추천 정보를 얻으실 수 있습니다.
               </p>
@@ -33,9 +33,14 @@ export default function Pick() {
               modules={[Navigation]}
               className={styles.pickslider}
               spaceBetween={24}
+              breakpoints={{
+                768: {
+                  spaceBetween: 12,
+                },
+              }}
             >
               <SwiperSlide className="w-[312px]">
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 16일 전
@@ -47,10 +52,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/icons/logo.97dbb956.svg" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [초급/Java/약12개월/서울역] 계약 시스템 및 클라우드 플랫폼
                     지원(7월~)
                   </div>
@@ -114,7 +119,7 @@ export default function Pick() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 9일 전
@@ -126,10 +131,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/icons/logo.97dbb956.svg" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [고급/JAVA/5개월/증미역] 물류 / 회계 시스템 개발
                   </div>
                   <div className="flex gap-[4px] items-start h-[52px] overflow-hidden w-full">
@@ -180,7 +185,7 @@ export default function Pick() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 2일 전
@@ -192,10 +197,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/company-logo_75.png" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [고급/VC++,MFC/6개월(연장가능)/공덕] (QT) 클라이언트 개발
                   </div>
                   <div className="flex gap-[4px] items-start flex-wrap h-[52px] overflow-hidden w-full">
@@ -249,7 +254,7 @@ export default function Pick() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 2일 전
@@ -261,10 +266,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/company-logo_680.png" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [중급/Java/약7개월/역삼] GS칼텍스 에너지플러스앱 개발 및
                     유지보수 (고급가능)
                   </div>
@@ -325,7 +330,7 @@ export default function Pick() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 2일 전
@@ -337,10 +342,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/company-logo_75.png" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [중급/JavaScript/3개월(연장가능)/공덕] (MTS) 클라이언트
                     맵화면 개발자 (고급가능)
                   </div>
@@ -401,7 +406,7 @@ export default function Pick() {
                 </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300">
+                <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                   <div className="flex justify-between items-start w-full">
                     <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
                       마감 2일 전
@@ -413,10 +418,10 @@ export default function Pick() {
                       </h2>
                     </div>
                   </div>
-                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center">
+                  <div className="w-[264px] h-[149px] rounded-[8px] border border-[#ececf1] bg-[#fdfdfd] flex items-center justify-center max-sm:h-[131px] max-sm:w-full">
                     <img src="/images/icons/logo.97dbb956.svg" />
                   </div>
-                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2">
+                  <div className="text-[#1b1c1e] text-[18px] font-bold max-h-[50px] text-ellipsis break-keep whitespace-normal line-clamp-2 max-sm:text-[16px] max-sm:max-h-[44px]">
                     [고급/JAVA/11개월/선릉역] DB생명 방카슈랑스 개발(7월중순~)
                   </div>
                   <div className="flex gap-[4px] items-start h-[52px] overflow-hidden w-full">
@@ -470,8 +475,10 @@ export default function Pick() {
           </div>
         </div>
         <Link href="/list-partner">
-          <div className="flex py-[24px] justify-center items-center gap-[8px] border-t border-[#ececf1]">
-            <h2 className="text-[#58575e] text-[16px] font-bold">더보기</h2>
+          <div className="flex py-[24px] justify-center items-center gap-[8px] border-t border-[#ececf1] max-sm:py-[12px] max-sm:gap-[4px]">
+            <h2 className="text-[#58575e] text-[16px] font-bold max-sm:text-[14px]">
+              더보기
+            </h2>
             <img src="/images/icons/more-btn.cb9074fb.svg" />
           </div>
         </Link>

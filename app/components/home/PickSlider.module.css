@@ -35,3 +35,22 @@
 .pickslider [class*='swiper-button-disabled'] {
   opacity: 1;
 }
+
+/* 모바일분기점 */
+@media (max-width: 767px) {
+  .pickslider [class*='swiper-button-prev'] {
+    width: 32px;
+    height: 32px;
+    left: auto;
+    right: 40px;
+    top: 110px;
+    bottom: auto;
+  }
+  .pickslider [class*='swiper-button-next'] {
+    width: 32px;
+    height: 32px;
+    left: auto;
+    right: 0px;
+    top: 110px;
+  }
+}
