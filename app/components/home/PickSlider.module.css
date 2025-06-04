@@ -1,0 +1,37 @@
+.pickslider {
+  position: static;
+}
+
+.pickslider [class*='swiper-slide'] {
+  width: 312px;
+  flex-shrink: 1;
+}
+.pickslider [class*='swiper-button-prev'] {
+  background-image: url('/images/icons/left-nav.eb875d7a.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 56px;
+  height: 56px;
+  left: 0px;
+  top: auto;
+  bottom: 0px;
+}
+.pickslider [class*='swiper-button-prev']::after {
+  display: none;
+}
+.pickslider [class*='swiper-button-next'] {
+  background-image: url('/images/icons/right-nav.fe85bf9b.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 56px;
+  height: 56px;
+  left: 64px;
+  top: auto;
+  bottom: 0px;
+}
+.pickslider [class*='swiper-button-next']::after {
+  display: none;
+}
+.pickslider [class*='swiper-button-disabled'] {
+  opacity: 1;
+}

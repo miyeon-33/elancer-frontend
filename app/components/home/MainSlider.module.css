@@ -49,6 +49,30 @@
   display: none;
 }
 
+.pickslider {
+  position: static;
+}
+
+.pickslider [class*='swiper-slide'] {
+  width: 312px;
+  flex-shrink: 1;
+}
+
+.pickslider [class*='swiper-button'] {
+  border: 1px solid red;
+}
+.pickslider [class*='swiper-button-prev'] {
+  background-image: url('/images/icons/left-nav.eb875d7a.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 56px;
+  height: 56px;
+  left: 0px;
+}
+.pickslider [class*='swiper-button-prev']::after {
+  display: none;
+}
+
 /* 모바일분기점 */
 @media (max-width: 767px) {
   .slider [class*='swiper-button'] {
