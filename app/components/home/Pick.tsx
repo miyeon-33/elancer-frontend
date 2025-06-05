@@ -10,7 +10,7 @@ import Link from 'next/link';
 export default function Pick() {
   return (
     <div className="max-w-[1200px] max-md:px-[20px] max-sm:px-[20px] max-sm:max-w-[768px] max-sm:min-w-[375px]">
-      <div className="flex flex-col w-autoitems-start gap-[32px] rounded-[24px] bg-[#fff] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] mb-[80px] pt-[56px] px-[56px] max-sm:pt-[32px] max-sm:px-[20px] max-sm:pb-[20px]">
+      <div className="flex flex-col items-start gap-[32px] rounded-[24px] bg-[#fff] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] mb-[80px] pt-[56px] px-[56px] max-sm:pt-[32px] max-sm:px-[20px] max-sm:pb-[20px]">
         <div className="flex items-start gap-[32px] w-full max-w-[1200px] overflow-hidden relative max-sm:flex-col">
           <div className="flex w-[312px] flex-col items-start self-stretch justify-between max-sm:w-full">
             <div className="gap-[16px] flex flex-col max-sm:gap-[6px] max-sm:items-start">

@@ -273,25 +273,25 @@ export default function Footer() {
             <div className="flex justify-start items-center mt-[36px]">
               <Link
                 href="https://estsoft.ai/"
-                className="w-[64px] h-[18px] bg-[url('/images/LogoEstsoft.png')] bg-no-repeat bg-[100%_auto] hover:bg-[0px_-18px]"
+                className="w-[64px] h-[18px] bg-no-repeat bg-[100%_auto] hover:bg-[0px_-18px]"
               ></Link>
               <ul className="flex justify-center items-center gap-[16px] ml-[32px]">
                 <li>
                   <Link
                     href="https://estsoft.ai/"
-                    className="w-[28px] h-[28px] block bg-[url('/images/footer.png')] bg-no-repeat bg-[84px_auto] hover:bg-[0px_-28px]"
+                    className="w-[28px] h-[28px] block bg- bg-no-repeat bg-[84px_auto] hover:bg-[0px_-28px]"
                   ></Link>
                 </li>
                 <li>
                   <Link
                     href="https://www.facebook.com/estsoftfb/"
-                    className="w-[28px] h-[28px] block bg-[url('/images/footer.png')] bg-no-repeat bg-[84px_auto] bg-[-28px_0px] hover:bg-[-28px_-28px]"
+                    className="w-[28px] h-[28px] block bg- bg-no-repeat bg-[84px_auto] bg-[-28px_0px] hover:bg-[-28px_-28px]"
                   ></Link>
                 </li>
                 <li>
                   <Link
                     href="mailto:altools@estsoft.com"
-                    className="w-[28px] h-[28px] block bg-[url('/images/footer.png')] bg-no-repeat bg-[84px_auto] bg-[-56px_0px] hover:bg-[-56px_-28px]"
+                    className="w-[28px] h-[28px] block bg- bg-no-repeat bg-[84px_auto] bg-[-56px_0px] hover:bg-[-56px_-28px]"
                   ></Link>
                 </li>
               </ul>
@@ -337,7 +337,7 @@ export default function Footer() {
             <div className="absolute top-[24px] right-0 flex items-baseline max-md:static max-md:pt-[16px] max-md:ml-[-10px]">
               <div className="relative">
                 <strong
-                  className="inline-block text-[13px] font-semibold text-[#8b95a1] rounded-[4px] py-[8px] px-[10px] after:content-[''] after:inline-block after:w-[12px] after:h-[12px] after:bg-[url('/images/icons/plus.svg')] after:bg-no-repeat after:ml-[5px] hover:bg-[rgba(139,149,161,.1)] transition-all duration-200 cursor-pointer"
+                  className="inline-block text-[13px] font-semibold text-[#8b95a1] rounded-[4px] py-[8px] px-[10px] after:content-[''] after:inline-block after:w-[12px] after:h-[12px] after:ml-[5px] hover:bg-[rgba(139,149,161,.1)] transition-all duration-200 cursor-pointer"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   Family Site
