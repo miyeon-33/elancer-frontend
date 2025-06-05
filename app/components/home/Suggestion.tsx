@@ -32,8 +32,8 @@ export default function Suggestion() {
             ))}
           </div>
         </div>
-        <div className="flex items-start flex-wrap">
-          <div className="grid grid-cols-2 gap-[24px] items-start max-sm:gap-[12px]  overflow-x-auto">
+        <div className="flex items-start flex-wrap overflow-x-auto">
+          <div className="grid grid-cols-2 gap-[24px] items-start max-sm:gap-[12px] max-sm:min-w-[612px]">
             <Link href="/project_datail/:id">
               <div className="flex flex-col rounded-[12px] py-[24px] px-[32px] gap-[12px] border border-[#dedfe7] bg-[#fff] hover:border-[#ff3148] max-sm:p-[16px] max-sm:min-w-[300px]">
                 <div className="flex items-center justify-between h-[24px]">
