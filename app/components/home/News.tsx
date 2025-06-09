@@ -74,10 +74,10 @@ export default function News() {
       <div className="w-[704px] h-auto max-sm:w-full max-sm:h-[309px]">
         <div className="grid grid-cols-2 gap-[16px] max-sm:flex max-sm:overflow-x-auto max-sm:gap-[12px]">
           <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px]">
+            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
               <img
                 src="/images/863_mo_1.jpg"
-                className="w-full h-[199px] object-cover"
+                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
               />
               <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
                 <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
@@ -99,10 +99,10 @@ export default function News() {
             </div>
           </Link>
           <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px]">
+            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
               <img
                 src="/images/860_mo_1.jpg"
-                className="w-full h-[199px] object-cover"
+                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
               />
               <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
                 <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
@@ -124,10 +124,10 @@ export default function News() {
             </div>
           </Link>
           <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px]">
+            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
               <img
                 src="/images/858_mo_1.jpg"
-                className="w-full h-[199px] object-cover"
+                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300s"
               />
               <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
                 <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
@@ -149,10 +149,10 @@ export default function News() {
             </div>
           </Link>
           <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px]">
+            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
               <img
                 src="/images/857_mo_1.jpg"
-                className="w-full h-[199px] object-cover"
+                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
               />
               <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
                 <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
@@ -173,6 +173,17 @@ export default function News() {
             </div>
           </Link>
         </div>
+      </div>
+      <div className="hidden max-sm:block w-full">
+        <Link
+          href="/blog"
+          className="flex items-center gap-[8px] justify-center py-[12px] border-t border-[#dedfe7] mr-[20px]"
+        >
+          <p className="text-[#58575e] text-[14px] font-bold leading-[22px]">
+            더보기
+          </p>
+          <img src="/images/icons/ico-see-more.2012c002.svg" />
+        </Link>
       </div>
     </div>
   );
