@@ -56,7 +56,7 @@ export default function Platform() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center pt-[68px] px-[56px] pb-[120px] gap-[68px] max-sm:mt-[24px] max-sm:px-[32px] max-sm:pb-[68px] max-sm:gap-[24px]">
+    <div className="flex flex-col justify-center items-center pt-[68px] px-[56px] pb-[120px] gap-[68px] max-sm:mt-[24px] max-sm:px-[32px] max-sm:pb-[68px] max-sm:gap-[24px] max-w-[1200px] mx-auto">
       <div className="flex justify-between items-center w-full max-sm:flex-col max-sm:items-start max-sm:gap-[24px]">
         <div className="flex flex-col gap-[16px] max-sm:gap-[6px]">
           <h1>

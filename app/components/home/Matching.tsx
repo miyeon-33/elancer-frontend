@@ -1,7 +1,7 @@
 export default function Matching() {
   return (
-    <div className="max-md:px-[20px] max-sm:px-[20px]">
-      <div className="max-w-[1200px] flex p-[32px] flex-col justify-center items-center gap-[56px] rounded-[24px] bg-[rgb(27,28,30)] mb-[136px] max-sm:px-[20px] max-sm:w-full max-sm:rounded-[16px] max-sm:mb-[64px] max-sm:gap-[32px]">
+    <div className="max-md:px-[20px] max-sm:px-[20px] max-w-[1200px] mx-auto">
+      <div className="flex p-[32px] flex-col justify-center items-center gap-[56px] rounded-[24px] bg-[rgb(27,28,30)] mb-[136px] max-sm:px-[20px] max-sm:w-full max-sm:rounded-[16px] max-sm:mb-[64px] max-sm:gap-[32px]">
         <h2 className="flex flex-col w-[465px] items-center gap-[16px] max-sm:w-full">
           <p className="text-[rgb(201,200,205)] text-[20px] font-normal text-center max-sm:text-[14px]">
             왜, 이랜서인가?

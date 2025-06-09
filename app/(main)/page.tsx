@@ -1,3 +1,4 @@
+import Customer from '@/app/components/home/Customer';
 import MainSlider from '@/app/components/home/MainSlider';
 import Manager from '@/app/components/home/Manager';
 import Matching from '@/app/components/home/Matching';
@@ -8,7 +9,7 @@ import Suggestion from '@/app/components/home/Suggestion';
 
 export default function Home() {
   return (
-    <main className="max-w-[1200px] mx-auto h-[4800px]">
+    <main className="border mx-auto h-[5800px]">
       <MainSlider />
       <Platform />
       <Pick />
@@ -16,7 +17,7 @@ export default function Home() {
       <News />
       <Matching />
       <Manager />
-      {/* <Shortcut /> */}
+      <Customer />
     </main>
   );
 }

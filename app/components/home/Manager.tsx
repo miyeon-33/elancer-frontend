@@ -14,8 +14,8 @@ export default function Manager() {
   ];
 
   return (
-    <div className="max-md:px-[20px] max-sm:px-[20px] w-full">
-      <div className="max-w-[1200px] flex flex-col items-start gap-[56px] max-sm:w-full max-sm:gap-[32px] max-sm:mb-[68px]">
+    <div className="max-md:px-[20px] max-sm:px-[20px] mx-auto max-w-[1200px]">
+      <div className="flex flex-col items-start gap-[56px] max-sm:w-full max-sm:gap-[32px] max-sm:mb-[68px]">
         <div className="flex justify-between items-end self-stretch">
           <div className="flex w-[564px] flex-col items-start gap-[16px] max-sm:w-full max-sm:gap-[6px] max-sm:mr-[20px]">
             <h2 className="text-[rgb(27,28,30)] text-[32px] font-bold max-sm:text-[20px]">
