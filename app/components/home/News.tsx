@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { act, useState } from 'react';
+import { useState } from 'react';
 
 export default function News() {
   const [activeButton, setActiveButton] = useState<number>(1);
@@ -13,7 +13,7 @@ export default function News() {
   ];
 
   return (
-    <div className="flex max-w-[1200px] mt-[136px] items-start gap-[56px] max-md:px-[20px] max-sm:px-[20px] max-sm:flex-col max-sm:gap-[24px] max-sm:w-full max-sm:mt-[68px] max-sm:mb-[68px]">
+    <div className="flex max-w-[1200px] my-[136px]  items-start gap-[56px] max-md:px-[20px] max-sm:px-[20px] max-sm:flex-col max-sm:gap-[24px] max-sm:w-full max-sm:mt-[68px] max-sm:mb-[68px]">
       <div className="flex w-[440px] flex-col items-start gap-[32px] max-sm:gap-[24px]  max-sm:w-full">
         <div className="flex w-[440px] flex-col items-start gap-[16px] max-sm:w-full max-sm:gap-[4px]">
           <h2 className="text-[#1b1c1e] text-[32px] font-bold max-sm:text-[20px]">

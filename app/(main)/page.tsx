@@ -1,4 +1,5 @@
 import MainSlider from '@/app/components/home/MainSlider';
+import Matching from '@/app/components/home/Matching';
 import News from '@/app/components/home/News';
 import Pick from '@/app/components/home/Pick';
 import Platform from '@/app/components/home/Platform';
@@ -12,8 +13,8 @@ export default function Home() {
       <Pick />
       <Suggestion />
       <News />
-      {/* <Promotion />
-      <Tip />
+      <Matching />
+      {/* <Tip />
       <Shortcut /> */}
     </main>
   );
