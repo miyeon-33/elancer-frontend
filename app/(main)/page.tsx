@@ -1,4 +1,5 @@
 import MainSlider from '@/app/components/home/MainSlider';
+import Manager from '@/app/components/home/Manager';
 import Matching from '@/app/components/home/Matching';
 import News from '@/app/components/home/News';
 import Pick from '@/app/components/home/Pick';
@@ -14,8 +15,8 @@ export default function Home() {
       <Suggestion />
       <News />
       <Matching />
-      {/* <Tip />
-      <Shortcut /> */}
+      <Manager />
+      {/* <Shortcut /> */}
     </main>
   );
 }
