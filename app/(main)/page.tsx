@@ -1,4 +1,5 @@
 import Customer from '@/app/components/home/Customer';
+import Image from '@/app/components/home/Image';
 import MainSlider from '@/app/components/home/MainSlider';
 import Manager from '@/app/components/home/Manager';
 import Matching from '@/app/components/home/Matching';
@@ -9,7 +10,7 @@ import Suggestion from '@/app/components/home/Suggestion';
 
 export default function Home() {
   return (
-    <main className="border mx-auto h-[5800px] bg-[#f6f7f9]">
+    <main className="mx-auto bg-[#f6f7f9]">
       <MainSlider />
       <Platform />
       <Pick />
@@ -18,6 +19,7 @@ export default function Home() {
       <Matching />
       <Manager />
       <Customer />
+      <Image />
     </main>
   );
 }
