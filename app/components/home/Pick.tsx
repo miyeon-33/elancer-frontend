@@ -474,7 +474,7 @@ export default function Pick() {
             </Swiper>
           </div>
         </div>
-        <Link href="/list-partner">
+        <Link href="/list-partner" className="w-full">
           <div className="flex py-[24px] justify-center items-center gap-[8px] border-t border-[#ececf1] max-sm:py-[12px] max-sm:gap-[4px]">
             <h2 className="text-[#58575e] text-[16px] font-bold max-sm:text-[14px]">
               더보기
