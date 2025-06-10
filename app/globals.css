@@ -1343,4 +1343,9 @@ input[type='radio']:checked + label::before {
       transform: translateX(-50%);
     }
   }
+  @keyframes moveIconR {
+    100% {
+      transform: translateX(50%);
+    }
+  }
 }
