@@ -1,7 +1,7 @@
-import Download from '@/app/components/products/ALTOOLS/Download';
-import Functions from '@/app/components/products/ALTOOLS/Functions';
-import Section1 from '@/app/components/products/ALTOOLS/Section1';
-import Section2 from '@/app/components/products/ALTOOLS/Section2';
+import Download from '@/app/components/list-partner/ALTOOLS/Download';
+import Functions from '@/app/components/list-partner/ALTOOLS/Functions';
+import Section1 from '@/app/components/list-partner/ALTOOLS/Section1';
+import Section2 from '@/app/components/list-partner/ALTOOLS/Section2';
 
 type ProductDetailsProp = {
   params: Promise<{ productId: string }>;
