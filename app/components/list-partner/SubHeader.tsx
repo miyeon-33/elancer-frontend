@@ -9,7 +9,7 @@ export default function Header() {
   const [inputValue, setInputValue] = useState('');
 
   return (
-    <header className="sticky top-0 bg-[#f6f7f9] border-b border-[#ececf1] z-20  w-full ">
+    <header className="sticky top-0 bg-[#1b1c1e] border-b border-[#161719] z-20 w-full">
       <div className=" h-[76px] justify-between px-[20px] mx-auto flex items-center max-sm:max-w-[768px] max-sm:flex-col max-sm:items-start max-sm:h-auto relative max-w-[1200px]">
         {/* 모바일 사이드메뉴 */}
         {isSideOpen && (
@@ -116,11 +116,11 @@ export default function Header() {
             </div>
           </>
         )}
-        {/* 모바일버튼 */}
+
         <div className="max-sm:flex max-sm:justify-between max-sm:w-full items-center">
           <Link href="/" className="flex gap-[4px] w-[186px]">
             <img
-              src="/images/icons/logo-815984.927499af.svg"
+              src="/images/icons/logo-darkmode.8027c773.svg"
               className="w-[116px] max-sm:w-[98px] max-sm:h-[48px]"
             />
           </Link>
@@ -242,7 +242,7 @@ export default function Header() {
           <li className="inline-block">
             <Link
               href="/list-enterprise"
-              className="text-[#2a2b2e] text-[16px] font-bold"
+              className="text-[#f3f4f6] text-[16px] font-bold"
             >
               프리랜서
             </Link>
@@ -250,7 +250,7 @@ export default function Header() {
           <li className="inline-block">
             <Link
               href="/list-partner"
-              className="text-[#2a2b2e] text-[16px] font-bold"
+              className="text-[#ff6948] text-[16px] font-bold"
             >
               상주 프로젝트
             </Link>
@@ -258,13 +258,13 @@ export default function Header() {
           <li className="inline-block">
             <Link
               href="/list-partner?pf=턴키"
-              className="text-[#2a2b2e] text-[16px] font-bold"
+              className="text-[#f3f4f6] text-[16px] font-bold"
             >
               재택 프로젝트
             </Link>
           </li>
           <li className="inline-block relative group">
-            <Link href="/blog" className="text-[#2a2b2e] text-[16px] font-bold">
+            <Link href="/blog" className="text-[#f3f4f6] text-[16px] font-bold">
               블로그
             </Link>
             <div
@@ -362,7 +362,7 @@ export default function Header() {
           <li className="inline-block relative group">
             <Link
               href="/community"
-              className="text-[#2a2b2e] text-[16px] font-bold"
+              className="text-[#f3f4f6] text-[16px] font-bold"
             >
               커뮤니티
             </Link>
@@ -421,7 +421,10 @@ export default function Header() {
         </ul>
         <div className="flex items-center gap-[12px] max-sm:hidden">
           <button type="button" onClick={() => setIsMenuOpen(true)}>
-            <img src="/images/icons/search.808d692a.svg" className="w-[25px]" />
+            <img
+              src="/images/icons/search-dark.5a3eb42c.svg"
+              className="w-[25px]"
+            />
           </button>
           <div className="flex items-center gap-[4px]">
             <Link
@@ -432,7 +435,7 @@ export default function Header() {
             </Link>
             <Link
               href="/signup"
-              className="flex h-[36px] px-[24px] justify-center items-center gap-[8px] rounded-[24px] border-[#e7e7e7] bg-[#ff6948] border"
+              className="flex h-[36px] px-[24px] justify-center items-center gap-[8px] rounded-[24px] bg-[#ff6948]"
             >
               <p className="text-[#fff] text-[13px] font-semibold">회원가입</p>
             </Link>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { use } from 'react';
 
 type Project = {
   project_id: number;
@@ -20,31 +20,15 @@ type Project = {
   expected_start_date: string;
 };
 
-export default function Project() {
-  const [data, setData] = useState<Project[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch('http://localhost:3001/list-partner');
-        if (!res.ok) throw new Error('Failed to fetch data');
-
-        const projectData = await res.json();
-        setData(projectData);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
-
+export default function Project({ data }: { data: Promise<Project[]> }) {
+  const projects = use(data);
   return (
     <div>
-      {data.length > 0 ? (
-        data.map((item) => <p key={item.project_id}>{item.project_id}</p>) // ✅ key 값 수정
-      ) : (
-        <p>Loading...</p>
-      )}
+      <ul className="flex">
+        {projects.map((project) => (
+          <li key={project.project_id}>{project.project_id}</li>
+        ))}
+      </ul>
     </div>
   );
 }
