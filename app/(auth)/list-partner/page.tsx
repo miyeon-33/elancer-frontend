@@ -3,16 +3,21 @@ import Project from '@/app/components/list-partner/Project';
 import SubHeader from '@/app/components/list-partner/SubHeader';
 import SubIntroduce from '@/app/components/list-partner/SubIntroduce';
 
-export default function ListPartner() {
-  async function getProject() {
-    const res = await fetch('http://localhost:3001/list-partner');
+async function getProject() {
+  const res = await fetch('http://localhost:3001/technology', {
+    cache: 'no-store',
+  });
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    return res.json();
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
   }
-  const data = getProject();
+
+  return res.json();
+}
+
+export default async function ListPartner() {
+  const data = await getProject();
+
   return (
     <main className="bg-[rgb(27,28,30)] h-[8000px]">
       <SubHeader />
