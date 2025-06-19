@@ -4,7 +4,7 @@ import SubHeader from '@/app/components/list-partner/SubHeader';
 import SubIntroduce from '@/app/components/list-partner/SubIntroduce';
 
 async function getProject() {
-  const res = await fetch('http://localhost:3001/technology', {
+  const res = await fetch('http://localhost:3001/project', {
     cache: 'no-store',
   });
 
