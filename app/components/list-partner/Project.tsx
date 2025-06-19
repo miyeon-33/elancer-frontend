@@ -8,6 +8,11 @@ type Technology = {
   detail_name: string[];
 };
 
+type Category = {
+  category_id: number;
+  category_name: string;
+};
+
 type Project = {
   project_id: number;
   title: string;
@@ -20,11 +25,12 @@ type Project = {
   monthly_price: string;
   current_members: number;
   technology_name: string;
-  category_id: number;
+  category_name: string;
 };
 
 export default function Project({ data }: { data: Promise<Project[]> }) {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
@@ -42,6 +48,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
   const [isChecked10, setIsChecked10] = useState(false);
   const [selectedSort, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(10);
 
   const handleReset = () => {
     setClickedMenu(null);
@@ -91,7 +98,6 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
               ? tech.detail_name.split(',')
               : [],
         }));
-        console.log(formattedData);
         setTechnologies(formattedData);
       } catch (error) {
         console.error('데이터 불러오기 실패:', error);
@@ -113,8 +119,22 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch('http://localhost:3001/category');
+        const data = await res.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('카테고리 불러오기 실패:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
-    <div className="max-w-[1200px] mx-auto max-md:px-[20px] max-sm:p-0">
+    <div className="max-w-[1200px] mx-auto max-md:px-[20px] max-sm:p-0 pb-[40px]">
       <div className="p-[24px] bg-[rgb(42,43,46)] rounded-[16px] max-sm:p-[16px] max-sm:rounded-none">
         {/* 검색창 */}
         <div className="w-full relative">
@@ -490,7 +510,9 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
           <div className="flex flex-1 flex-col items-start gap-[16px]">
             <div className="flex w-full flex-col items-start gap-[24px]">
               <h2 className="flex items-start">
-                <span className="text-[18px] font-bold text-[#ff6948]">67</span>
+                <span className="text-[18px] font-bold text-[#ff6948]">
+                  {projects.length}
+                </span>
                 <span className="text-[18px] font-bold text-[#fff]">
                   개의 프로젝트
                 </span>
@@ -574,7 +596,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
             </div>
             {/* 데이터 렌더링 */}
             <div className="flex flex-col items-center w-full">
-              {projects.map((project) => (
+              {projects.slice(0, visibleCount).map((project) => (
                 <div
                   key={project.project_id}
                   className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
@@ -603,7 +625,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                       </div>
                       <div className="flex gap-[8px]">
                         <p className="h-[22px] text-[#ff6948] font-semibold text-[14px] whitespace-nowrap">
-                          {project.category_id}
+                          {project.category_name}
                         </p>
                         <div className="flex gap-[2px] max-h-[46px] flex-wrap">
                           <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
@@ -656,6 +678,27 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                   </div>
                 </div>
               ))}
+              {visibleCount < projects.length && (
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 10)}
+                  className="flex items-center gap-[2px] text-[#f3f4f6] text-[16px] font-medium"
+                >
+                  더보기
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m6 9 6 6 6-6"></path>
+                  </svg>
+                </button>
+              )}
             </div>
           </div>
         </div>
