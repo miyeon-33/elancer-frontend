@@ -35,6 +35,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
+  const [isOpen2, setIsOpen2] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
   const [isOpen4, setIsOpen4] = useState(true);
   const [isOpen5, setIsOpen5] = useState(true);
@@ -49,7 +50,30 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
   const [selectedSort, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
   const [visibleCount, setVisibleCount] = useState(10);
+  const [searchQuery, setSearchQuery] = useState('');
 
+  // 숙련도 추출
+  const selectedProficiencies: string[] = [];
+  if (isChecked3) selectedProficiencies.push('초급');
+  if (isChecked4) selectedProficiencies.push('중급');
+  if (isChecked5) selectedProficiencies.push('고급');
+  if (isChecked6) selectedProficiencies.push('무관');
+
+  // 검색 + 숙련도 필터 + 지역 필터
+  const filteredProjects = projects
+    .filter((project) =>
+      project.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter((project) =>
+      selectedProficiencies.length === 0
+        ? true
+        : selectedProficiencies.includes(project.proficiency)
+    )
+    .filter((project) =>
+      selectedLocation === null ? true : project.location === selectedLocation
+    );
+
+  // 초기화버튼
   const handleReset = () => {
     setClickedMenu(null);
     setIsOpen(true);
@@ -63,8 +87,10 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
     setIsChecked8(false);
     setIsChecked9(false);
     setIsChecked10(false);
+    setSelectedLocation(null);
   };
 
+  // 지역
   const locations = [
     '서울',
     '부산',
@@ -85,6 +111,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
     '제주',
   ];
 
+  // 기술데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -106,6 +133,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
     fetchData();
   }, []);
 
+  // 프로젝트 전체 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -119,6 +147,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
     fetchData();
   }, []);
 
+  // 카테고리 데이터 가져오기
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -143,6 +172,8 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
           </div>
           <input
             placeholder="프로젝트 키워드로 검색해 보세요."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="text-[16px] font-normal text-[#f3f4f6] pr-[40px] pl-[48px] py-[24px] border border-[#58575e] rounded-[6px] w-full h-[56px] flex hover:border-[#ff5400] max-sm:text-[14px]"
           />
         </div>
@@ -280,12 +311,12 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                           onClick={() => setIsChecked3(!isChecked3)}
                           className={`border rounded-[4px] w-[20px] h-[20px] ${
                             isChecked3
-                              ? 'bg-[rgb(0,0,0)]'
+                              ? 'bg-black'
                               : 'border-[rgb(181,180,187)]'
                           }`}
                         >
                           {isChecked3 && (
-                            <img src="images/icons/checked2.svg" />
+                            <img src="images/icons/checked2.svg" alt="선택됨" />
                           )}
                         </button>
                         <button className="text-[14px] font-normal">
@@ -457,7 +488,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                   <button
                     type="button"
                     className="py-[20px] px-[16px] flex items-center justify-between font-medium w-full"
-                    onClick={() => setIsOpen5(!isOpen5)}
+                    onClick={() => setIsOpen2(!isOpen2)}
                   >
                     <div className="flex items-center gap-[4px]">
                       <img src="images/icons/ico-work-area.2de46534.svg" />
@@ -468,50 +499,52 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                     <img
                       src="/images/icons/drop.svg"
                       className={`transition-all duration-300 ${
-                        isOpen5 ? 'rotate-180' : ''
+                        isOpen2 ? 'rotate-180' : ''
                       }`}
                     />
                   </button>
                 </h3>
-                <div className="text-[14px] px-[24px] overflow-hidden">
-                  <div className="pb-[32px]">
-                    <div className="flex flex-col justify-center gap-[12px]">
-                      <div className="h-[212px] w-[107px] overflow-y-auto ">
-                        <div className="flex flex-col gap-[16px]">
-                          {locations.map((loc) => {
-                            const isSelected = selectedLocation === loc;
-                            return (
-                              <button
-                                key={loc}
-                                type="button"
-                                onClick={() => setSelectedLocation(loc)}
-                                className={`text-[14px] font-bold text-left flex items-center gap-[4px] ${
-                                  isSelected
-                                    ? 'text-[#000]'
-                                    : 'text-[rgb(138,138,147)]'
-                                }`}
-                              >
-                                {loc}
-                                {isSelected && (
-                                  <img src="images/icons/checked.svg" />
-                                )}
-                              </button>
-                            );
-                          })}
+                {isOpen2 && (
+                  <div className="text-[14px] px-[24px] overflow-hidden">
+                    <div className="pb-[32px]">
+                      <div className="flex flex-col justify-center gap-[12px]">
+                        <div className="h-[212px] w-[107px] overflow-y-auto ">
+                          <div className="flex flex-col gap-[16px]">
+                            {locations.map((loc) => {
+                              const isSelected = selectedLocation === loc;
+                              return (
+                                <button
+                                  key={loc}
+                                  type="button"
+                                  onClick={() => setSelectedLocation(loc)}
+                                  className={`text-[14px] font-bold text-left flex items-center gap-[4px] ${
+                                    isSelected
+                                      ? 'text-[#000]'
+                                      : 'text-[rgb(138,138,147)]'
+                                  }`}
+                                >
+                                  {loc}
+                                  {isSelected && (
+                                    <img src="images/icons/checked.svg" />
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          {/* 모든 프로젝트 */}
           <div className="flex flex-1 flex-col items-start gap-[16px]">
+            {/* 모든 프로젝트 */}
             <div className="flex w-full flex-col items-start gap-[24px]">
               <h2 className="flex items-start">
                 <span className="text-[18px] font-bold text-[#ff6948]">
-                  {projects.length}
+                  {filteredProjects.length}
                 </span>
                 <span className="text-[18px] font-bold text-[#fff]">
                   개의 프로젝트
@@ -596,7 +629,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
             </div>
             {/* 데이터 렌더링 */}
             <div className="flex flex-col items-center w-full">
-              {projects.slice(0, visibleCount).map((project) => (
+              {filteredProjects.slice(0, visibleCount).map((project) => (
                 <div
                   key={project.project_id}
                   className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
@@ -678,7 +711,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                   </div>
                 </div>
               ))}
-              {visibleCount < projects.length && (
+              {visibleCount < filteredProjects.length && (
                 <button
                   onClick={() => setVisibleCount((prev) => prev + 10)}
                   className="flex items-center gap-[2px] text-[#f3f4f6] text-[16px] font-medium"
