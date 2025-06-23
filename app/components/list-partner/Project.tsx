@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState, use } from 'react';
 
 type Technology = {
   technology_id: number;
@@ -28,17 +29,51 @@ type Project = {
   category_name: string;
 };
 
-export default function Project({ data }: { data: Promise<Project[]> }) {
+export default function Project() {
+  const [count, setCount] = useState(0);
+  const {
+    data: responseData,
+    isPending,
+    isError,
+    error,
+  } = useQuery<{
+    total: number;
+    projects: Project[];
+  }>({
+    queryKey: ['projects', count],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:3001/project?count=${count}`);
+      if (!res.ok) throw new Error('데이터 요청 실패');
+
+      return res.json();
+    },
+  });
+
+  // projects 상태
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isShow, setIsShow] = useState(true);
+
+  useEffect(() => {
+    if (responseData) {
+      setProjects([...projects, ...responseData.projects]);
+    }
+  }, [responseData]);
+
+  const handleLoadMore = () => {
+    setCount(count + 1);
+    if (projects.length === responseData?.total) {
+      setIsShow(false);
+    }
+  };
+
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [projects, setProjects] = useState<Project[]>([]);
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
   const [isOpen4, setIsOpen4] = useState(true);
-  const [isOpen5, setIsOpen5] = useState(true);
   const [isChecked3, setIsChecked3] = useState(false);
   const [isChecked4, setIsChecked4] = useState(false);
   const [isChecked5, setIsChecked5] = useState(false);
@@ -49,7 +84,6 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
   const [isChecked10, setIsChecked10] = useState(false);
   const [selectedSort, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
 
   // 숙련도 추출
@@ -112,40 +146,26 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
   ];
 
   // 기술데이터 가져오기
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('http://localhost:3001/technology');
-        const data = await res.json();
+  const {
+    data: techData,
+    isLoading: isTechLoading,
+    isError: isTechError,
+  } = useQuery<Technology>({
+    queryKey: ['technologies'],
+    queryFn: async () => {
+      const res = await fetch('http://localhost:3001/technology');
+      if (!res.ok) throw new Error('기술 데이터 요청 실패');
+      const raw = await res.json();
 
-        const formattedData = data.map((tech: any) => ({
-          ...tech,
-          detail_name:
-            typeof tech.detail_name === 'string'
-              ? tech.detail_name.split(',')
-              : [],
-        }));
-        setTechnologies(formattedData);
-      } catch (error) {
-        console.error('데이터 불러오기 실패:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // 프로젝트 전체 데이터 가져오기
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('http://localhost:3001/project');
-        const data = await res.json();
-        setProjects(data);
-      } catch (error) {
-        console.error('데이터 불러오기 실패:', error);
-      }
-    };
-    fetchData();
-  }, []);
+      return raw.map((tech: any) => ({
+        ...tech,
+        details_name:
+          typeof tech.detail_name === 'string'
+            ? tech.detail_name.split(',')
+            : [],
+      }));
+    },
+  });
 
   // 카테고리 데이터 가져오기
   useEffect(() => {
@@ -544,7 +564,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
             <div className="flex w-full flex-col items-start gap-[24px]">
               <h2 className="flex items-start">
                 <span className="text-[18px] font-bold text-[#ff6948]">
-                  {filteredProjects.length}
+                  {responseData?.total}
                 </span>
                 <span className="text-[18px] font-bold text-[#fff]">
                   개의 프로젝트
@@ -629,7 +649,7 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
             </div>
             {/* 데이터 렌더링 */}
             <div className="flex flex-col items-center w-full">
-              {filteredProjects.slice(0, visibleCount).map((project) => (
+              {projects.map((project) => (
                 <div
                   key={project.project_id}
                   className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
@@ -711,9 +731,9 @@ export default function Project({ data }: { data: Promise<Project[]> }) {
                   </div>
                 </div>
               ))}
-              {visibleCount < filteredProjects.length && (
+              {isShow && (
                 <button
-                  onClick={() => setVisibleCount((prev) => prev + 10)}
+                  onClick={handleLoadMore}
                   className="flex items-center gap-[2px] text-[#f3f4f6] text-[16px] font-medium"
                 >
                   더보기
