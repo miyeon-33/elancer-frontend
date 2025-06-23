@@ -54,8 +54,9 @@ export default function Project() {
   const [isShow, setIsShow] = useState(true);
 
   useEffect(() => {
-    if (responseData) {
+    if (responseData?.projects) {
       setProjects([...projects, ...responseData.projects]);
+      console.log(responseData);
     }
   }, [responseData]);
 
@@ -66,7 +67,27 @@ export default function Project() {
     }
   };
 
-  const [technologies, setTechnologies] = useState<Technology[]>([]);
+  // 전체 데이터 받기
+  const {
+    data: allProjectData,
+    isLoading: isProjectLoading,
+    isError: isProjectError,
+  } = useQuery<{ total: number; projects: Project[] }>({
+    queryKey: ['projects-all'],
+    queryFn: async () => {
+      const res = await fetch('http://localhost:3001/project/all');
+      if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
+      return res.json();
+    },
+  });
+  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 데이터 보관용
+  useEffect(() => {
+    if (allProjectData?.projects) {
+      setAllProjects(allProjectData.projects); // 전체 저장
+      console.log(allProjectData);
+    }
+  }, [allProjectData]);
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
@@ -85,6 +106,9 @@ export default function Project() {
   const [selectedSort, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProjects, setFilteredProjects] = useState<Project[] | null>(
+    null
+  );
 
   // 숙련도 추출
   const selectedProficiencies: string[] = [];
@@ -92,20 +116,6 @@ export default function Project() {
   if (isChecked4) selectedProficiencies.push('중급');
   if (isChecked5) selectedProficiencies.push('고급');
   if (isChecked6) selectedProficiencies.push('무관');
-
-  // 검색 + 숙련도 필터 + 지역 필터
-  const filteredProjects = projects
-    .filter((project) =>
-      project.title.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .filter((project) =>
-      selectedProficiencies.length === 0
-        ? true
-        : selectedProficiencies.includes(project.proficiency)
-    )
-    .filter((project) =>
-      selectedLocation === null ? true : project.location === selectedLocation
-    );
 
   // 초기화버튼
   const handleReset = () => {
@@ -145,27 +155,58 @@ export default function Project() {
     '제주',
   ];
 
+  const [technologies, setTechnologies] = useState<Technology[]>([]);
+  const [selectedDetail, setSelectedDetail] = useState<string[]>([]);
+
   // 기술데이터 가져오기
   const {
     data: techData,
     isLoading: isTechLoading,
     isError: isTechError,
-  } = useQuery<Technology>({
+  } = useQuery<Technology[]>({
     queryKey: ['technologies'],
     queryFn: async () => {
       const res = await fetch('http://localhost:3001/technology');
       if (!res.ok) throw new Error('기술 데이터 요청 실패');
       const raw = await res.json();
+      return raw;
+    },
+  });
 
-      return raw.map((tech: any) => ({
+  useEffect(() => {
+    if (techData) {
+      const parsed = techData.map((tech: any) => ({
         ...tech,
-        details_name:
+        detail_name:
           typeof tech.detail_name === 'string'
             ? tech.detail_name.split(',')
             : [],
       }));
-    },
-  });
+      setTechnologies(parsed);
+    }
+  }, [techData]);
+
+  // 기술 핸들러 추가
+  const handleKeywordSearch = async (keyword: string) => {
+    try {
+      const res = await fetch('http://localhost:3001/project/by-keyword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ keyword }),
+      });
+
+      if (!res.ok) throw new Error('검색 요청 실패');
+
+      const data = await res.json();
+      setProjects(data.projects); // 더보기 데이터 덮어쓰기
+      setFilteredProjects(data.projects); // 검색 결과 보관
+      setIsShow(false); // 더보기 버튼 숨기기
+    } catch (error) {
+      console.error('🔍 키워드 검색 실패:', error);
+    }
+  };
 
   // 카테고리 데이터 가져오기
   useEffect(() => {
@@ -244,7 +285,7 @@ export default function Project() {
                     <div className="pb-[32px]">
                       <div className="flex h-[158px]">
                         <div className="flex flex-col min-w-[90px] mr-[8px] gap-[12px]">
-                          {technologies.map((tech) => (
+                          {techData?.map((tech) => (
                             <button
                               key={tech.technology_id}
                               onClick={() =>
@@ -272,26 +313,38 @@ export default function Project() {
                         <div className="pl-[8px] h-[158px] overflow-auto">
                           <ul className="flex items-start gap-[4px] flex-wrap">
                             {technologies
-                              .filter(
+                              ?.filter(
                                 (tech) => tech.technology_id === clickedMenu
                               )
-                              .map((tech) =>
-                                tech.detail_name.map(
-                                  (detail: string, index: number) => (
-                                    <li
-                                      key={`${tech.technology_id}-${detail}-${index}`}
+                              .flatMap((tech) =>
+                                tech.detail_name.map((detail, index) => (
+                                  <li
+                                    key={`${tech.technology_id}-${index}`}
+                                    onClick={() => setSelectedDetail(detail)}
+                                  >
+                                    <button
+                                      className={`flex h-[32px] px-[8px] justify-center items-center rounded-[16px]
+                                ${
+                                  selectedDetail === detail
+                                    ? 'bg-[#ff6948] border-[#ff6948]'
+                                    : 'bg-[#fff] border-[#ececf1] border'
+                                }`}
+                                      onClick={() =>
+                                        handleKeywordSearch(detail)
+                                      }
                                     >
-                                      <label
-                                        className="bg-[#fff] border border-[#ececf1]
-                                      flex h-[32px] px-[8px] justify-center items-center rounded-[16px]"
+                                      <span
+                                        className={`text-center text-[13px] font-normal ${
+                                          selectedDetail === detail
+                                            ? 'text-[#fff]'
+                                            : 'text-[#38383d]'
+                                        }`}
                                       >
-                                        <span className="text-[#38383d] text-center text-[13px] font-normal">
-                                          {detail}
-                                        </span>
-                                      </label>
-                                    </li>
-                                  )
-                                )
+                                        {detail}
+                                      </span>
+                                    </button>
+                                  </li>
+                                ))
                               )}
                           </ul>
                         </div>
@@ -564,7 +617,9 @@ export default function Project() {
             <div className="flex w-full flex-col items-start gap-[24px]">
               <h2 className="flex items-start">
                 <span className="text-[18px] font-bold text-[#ff6948]">
-                  {responseData?.total}
+                  {filteredProjects
+                    ? filteredProjects.length
+                    : responseData?.total}
                 </span>
                 <span className="text-[18px] font-bold text-[#fff]">
                   개의 프로젝트
