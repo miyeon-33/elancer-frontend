@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Header() {
+export default function SubHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSideOpen, setIsSideOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');

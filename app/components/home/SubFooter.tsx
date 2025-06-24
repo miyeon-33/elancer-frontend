@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Footer() {
+export default function SubFooter() {
   return (
     <footer className="w-full h-[258px] bg-[#1b1c1e] border-t border-[#161719] max-sm:border-0 max-sm:h-auto">
       <div className="flex flex-col py-[32px] px-[40px] max-w-[1200px] mx-auto max-sm:p-[24px] max-sm:items-start max-sm:gap-[16px]">

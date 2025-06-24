@@ -1,5 +1,5 @@
-import Header from '@/app/components/home/Header';
-import Footer from '@/app/components/home/Footer';
+import ConditionalHeader from '@/app/components/home/ConditionalHeader';
+import ConditionalFooter from '@/app/components/home/ConditionalFooter';
 
 export default function MainLayout({
   children,
@@ -8,9 +8,9 @@ export default function MainLayout({
 }>) {
   return (
     <div>
-      <Header />
+      <ConditionalHeader />
       {children}
-      <Footer />
+      <ConditionalFooter />
     </div>
   );
 }

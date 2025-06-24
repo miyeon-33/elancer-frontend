@@ -1,4 +1,4 @@
-import SubHeader from '@/app/components/list-partner/SubHeader';
+import SubHeader from '@/app/components/home/SubHeader';
 
 export default function ProjectDetail({}) {
   return (
