@@ -7,7 +7,11 @@ type Technology = {
   detail_name: string[];
 };
 
-export default function SmartFilter() {
+type SmartFilterProps = {
+  onSelectDetail: (detail: string) => void;
+};
+
+export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
@@ -180,7 +184,10 @@ export default function SmartFilter() {
                             tech.detail_name.map((detail, index) => (
                               <li
                                 key={`${tech.technology_id}-${index}`}
-                                onClick={() => setSelectedDetail(detail)}
+                                onClick={() => {
+                                  setSelectedDetail(detail);
+                                  onSelectDetail(detail);
+                                }}
                               >
                                 <button
                                   className={`flex h-[32px] px-[8px] justify-center items-center rounded-[16px]

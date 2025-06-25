@@ -8,6 +8,14 @@ type Category = {
   category_name: string;
 };
 
+type ProjectProps = {
+  projects: Project[];
+  isLoading: boolean;
+  onLoadMore: () => void;
+  isShowMore: boolean;
+  totalCount: number;
+};
+
 type Project = {
   project_id: number;
   title: string;
@@ -23,65 +31,13 @@ type Project = {
   category_name: string;
 };
 
-export default function Project() {
-  const [count, setCount] = useState(0);
-  const {
-    data: responseData,
-    isPending,
-    isError,
-    error,
-  } = useQuery<{
-    total: number;
-    projects: Project[];
-  }>({
-    queryKey: ['projects', count],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:3001/project?count=${count}`);
-      if (!res.ok) throw new Error('데이터 요청 실패');
-
-      return res.json();
-    },
-  });
-
-  // projects 상태
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [isShow, setIsShow] = useState(true);
-
-  useEffect(() => {
-    if (responseData?.projects) {
-      setProjects([...projects, ...responseData.projects]);
-      console.log(responseData);
-    }
-  }, [responseData]);
-
-  const handleLoadMore = () => {
-    setCount(count + 1);
-    if (projects.length === responseData?.total) {
-      setIsShow(false);
-    }
-  };
-
-  // 전체 데이터 받기
-  const {
-    data: allProjectData,
-    isLoading: isProjectLoading,
-    isError: isProjectError,
-  } = useQuery<{ total: number; projects: Project[] }>({
-    queryKey: ['projects-all'],
-    queryFn: async () => {
-      const res = await fetch('http://localhost:3001/project/all');
-      if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
-      return res.json();
-    },
-  });
-  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 데이터 보관용
-  useEffect(() => {
-    if (allProjectData?.projects) {
-      setAllProjects(allProjectData.projects); // 전체 저장
-      console.log(allProjectData);
-    }
-  }, [allProjectData]);
-
+export default function Project({
+  projects,
+  isLoading,
+  onLoadMore,
+  isShowMore,
+  totalCount,
+}: ProjectProps) {
   const [categories, setCategories] = useState<Category[]>([]);
 
   const [selectedSort, setSelectedSort] = useState('latest');
@@ -111,7 +67,7 @@ export default function Project() {
       <div className="flex w-full flex-col items-start gap-[24px]">
         <h2 className="flex items-start">
           <span className="text-[18px] font-bold text-[#ff6948]">
-            {filteredProjects ? filteredProjects.length : responseData?.total}
+            {totalCount}
           </span>
           <span className="text-[18px] font-bold text-[#fff]">
             개의 프로젝트
@@ -192,92 +148,96 @@ export default function Project() {
       </div>
       {/* 데이터 렌더링 */}
       <div className="flex flex-col items-center w-full">
-        {projects.map((project) => (
-          <div
-            key={project.project_id}
-            className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
-          >
-            <div className="flex bg-[#fff] rounded-[12px] p-[24px] gap-[40px] border-2 border-[#ececf1] w-full hover:border-[#ff9148]">
-              <div className="flex flex-col gap-[16px] w-full">
-                <div className="flex items-center h-[22px] gap-[8px]">
-                  <div className="flex items-center gap-[2px]">
-                    <img src="images/icons/adress-icon.27b99aa2(1).svg" />
-                    <p className="text-[#38383d] text-[13px] font-semibold">
-                      {project.location}
-                    </p>
-                  </div>
-                  <div className="w-[1px] h-[16px] bg-[#ececf1]"></div>
-                  <div className="flex items-center">
-                    <p className="text-[#007cfb] text-[14px] font-bold">
-                      {project.current_members}
-                    </p>
-                    <p className="text-[#777a83] text-[13px] font-normal">
-                      명 참여중
-                    </p>
-                  </div>
-                </div>
-                <div className="h-auto text-[22px] font-bold overflow-hidden text-ellipsis line-clamp-2 break-words text-[#000] -tracking-[0.75px]">
-                  {project.title}
-                </div>
-                <div className="flex gap-[8px]">
-                  <p className="h-[22px] text-[#ff6948] font-semibold text-[14px] whitespace-nowrap">
-                    {project.category_name}
-                  </p>
-                  <div className="flex gap-[2px] max-h-[46px] flex-wrap">
-                    <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
-                      JAVA
-                    </span>
-                    <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
-                      API
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-[16px] min-w-[147px]">
-                <div className="flex justify-end h-[24px] gap-[2px]">
-                  <img src="/images/icons/heart-empty.5ce7692c(1).svg" />
-                  <p className="text-[#1b1c1e] text-[16px] font-semibold">
-                    {project.likes}
-                  </p>
-                </div>
-                <div className="flex flex-col gap-[2px]">
-                  <div>
-                    <div className="flex justify-between">
-                      <p className="text-[13px] font-normal">숙련도</p>
-                      <p className="text-[13px] font-normal text-[#1b1c1e]">
-                        {project.proficiency}
+        {projects.length === 0 ? (
+          <p>조건에 맞는 프로젝트가 없습니다.</p>
+        ) : (
+          projects.map((project) => (
+            <div
+              key={project.project_id}
+              className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
+            >
+              <div className="flex bg-[#fff] rounded-[12px] p-[24px] gap-[40px] border-2 border-[#ececf1] w-full hover:border-[#ff9148]">
+                <div className="flex flex-col gap-[16px] w-full">
+                  <div className="flex items-center h-[22px] gap-[8px]">
+                    <div className="flex items-center gap-[2px]">
+                      <img src="images/icons/adress-icon.27b99aa2(1).svg" />
+                      <p className="text-[#38383d] text-[13px] font-semibold">
+                        {project.location}
                       </p>
                     </div>
-                    <div className="flex justify-between">
-                      <p className="text-[13px] font-normal">예상기간</p>
-                      <p className="text-[13px] font-normal text-[#1b1c1e]">
-                        {project.project_duration}
+                    <div className="w-[1px] h-[16px] bg-[#ececf1]"></div>
+                    <div className="flex items-center">
+                      <p className="text-[#007cfb] text-[14px] font-bold">
+                        {project.current_members}
+                      </p>
+                      <p className="text-[#777a83] text-[13px] font-normal">
+                        명 참여중
                       </p>
                     </div>
                   </div>
-                  <div className="flex justify-between">
-                    <p className="text-[13px] font-normal">월 단가</p>
-                    <p className="text-[13px] font-normal text-[#1b1c1e]">
-                      {project.monthly_price}
+                  <div className="h-auto text-[22px] font-bold overflow-hidden text-ellipsis line-clamp-2 break-words text-[#000] -tracking-[0.75px]">
+                    {project.title}
+                  </div>
+                  <div className="flex gap-[8px]">
+                    <p className="h-[22px] text-[#ff6948] font-semibold text-[14px] whitespace-nowrap">
+                      {project.category_name}
                     </p>
+                    <div className="flex gap-[2px] max-h-[46px] flex-wrap">
+                      <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
+                        JAVA
+                      </span>
+                      <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
+                        API
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-end h-[28px] gap-[2px]">
-                  <div className="rounded-[2px] border border-[#ececf1] py-[4px] px-[12px] bg-[#f3f4f6] text-[#1b1c1e] text-[13px] font-semibold whitespace-nowrap">
-                    {project.recruitment_status}
+                <div className="flex flex-col gap-[16px] min-w-[147px]">
+                  <div className="flex justify-end h-[24px] gap-[2px]">
+                    <img src="/images/icons/heart-empty.5ce7692c(1).svg" />
+                    <p className="text-[#1b1c1e] text-[16px] font-semibold">
+                      {project.likes}
+                    </p>
                   </div>
-                  <div className="rounded-[2px] py-[4px] px-[12px] bg-[#f44343] text-[#fff] text-[13px] font-semibold whitespace-nowrap">
-                    {project.deadline}
+                  <div className="flex flex-col gap-[2px]">
+                    <div>
+                      <div className="flex justify-between">
+                        <p className="text-[13px] font-normal">숙련도</p>
+                        <p className="text-[13px] font-normal text-[#1b1c1e]">
+                          {project.proficiency}
+                        </p>
+                      </div>
+                      <div className="flex justify-between">
+                        <p className="text-[13px] font-normal">예상기간</p>
+                        <p className="text-[13px] font-normal text-[#1b1c1e]">
+                          {project.project_duration}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="text-[13px] font-normal">월 단가</p>
+                      <p className="text-[13px] font-normal text-[#1b1c1e]">
+                        {project.monthly_price}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-end h-[28px] gap-[2px]">
+                    <div className="rounded-[2px] border border-[#ececf1] py-[4px] px-[12px] bg-[#f3f4f6] text-[#1b1c1e] text-[13px] font-semibold whitespace-nowrap">
+                      {project.recruitment_status}
+                    </div>
+                    <div className="rounded-[2px] py-[4px] px-[12px] bg-[#f44343] text-[#fff] text-[13px] font-semibold whitespace-nowrap">
+                      {project.deadline}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-        {isShow && (
+          ))
+        )}
+        {isShowMore && !isLoading && (
           <button
-            onClick={handleLoadMore}
             className="flex items-center gap-[2px] text-[#f3f4f6] text-[16px] font-medium"
+            onClick={onLoadMore}
           >
             더보기
             <svg
