@@ -8,7 +8,7 @@ type Technology = {
 };
 
 type SmartFilterProps = {
-  onSelectDetail: (detail: string) => void;
+  onSelectDetail: (detail: string[]) => void;
 };
 
 export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
@@ -26,6 +26,17 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
   const [isChecked10, setIsChecked10] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [isOpen2, setIsOpen2] = useState(true);
+  const [technologies, setTechnologies] = useState<Technology[]>([]);
+  const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
+
+  const handleDetailClick = (detail: string) => {
+    const updated = selectedDetails.includes(detail)
+      ? selectedDetails.filter((d) => d !== detail) // 이미 있으면 제거
+      : [...selectedDetails, detail]; // 없으면 추가
+
+    setSelectedDetails(updated);
+    onSelectDetail(updated); // ✅ 배열 전체를 부모로 전달
+  };
 
   // 지역
   const locations = [
@@ -99,9 +110,6 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
       setTechnologies(parsed);
     }
   }, [techData]);
-
-  const [technologies, setTechnologies] = useState<Technology[]>([]);
-  const [selectedDetail, setSelectedDetail] = useState<string | null>(null);
 
   return (
     <div>
@@ -184,22 +192,19 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
                             tech.detail_name.map((detail, index) => (
                               <li
                                 key={`${tech.technology_id}-${index}`}
-                                onClick={() => {
-                                  setSelectedDetail(detail);
-                                  onSelectDetail(detail);
-                                }}
+                                onClick={() => handleDetailClick(detail)}
                               >
                                 <button
                                   className={`flex h-[32px] px-[8px] justify-center items-center rounded-[16px]
                                 ${
-                                  selectedDetail === detail
+                                  selectedDetails.includes(detail)
                                     ? 'bg-[#ff6948] border-[#ff6948]'
                                     : 'bg-[#fff] border-[#ececf1] border'
                                 }`}
                                 >
                                   <span
                                     className={`text-center text-[13px] font-normal ${
-                                      selectedDetail === detail
+                                      selectedDetails.includes(detail)
                                         ? 'text-[#fff]'
                                         : 'text-[#38383d]'
                                     }`}

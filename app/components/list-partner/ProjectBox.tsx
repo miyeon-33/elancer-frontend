@@ -22,12 +22,66 @@ type Project = {
 };
 
 export default function ProjectBox() {
-  const [count, setCount] = useState(1); // 더보기 count
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isShow, setIsShow] = useState(true);
-  const [filterKeyword, setFilterKeyword] = useState('');
+  const [count, setCount] = useState(1); // 더보기 클릭 횟수
+  const [projects, setProjects] = useState<Project[]>([]); // 전체 프로젝트(페이징)
+  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 데이터(필터전용)
+  const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
+
+  // 전체 데이터 받기
+  const { data, isPending, isError } = useQuery({
+    queryKey: ['projects-all'],
+    queryFn: async () => {
+      const res = await fetch('http://localhost:3001/project/all');
+      if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
+      return res.json();
+    },
+  });
+
+  useEffect(() => {
+    if (data?.projects) {
+      setAllProjects(data.projects);
+      console.log(data);
+    }
+  }, [data]);
+
+  const handleDetailFilter = (details: string[]) => {
+    setSelectedDetails(details); // 필터 키워드 설정
+    setCount(1); // 필터 바뀌면 페이지를 초기화
+  };
+
+  // 필터 적용된 데이터
+  const filtered = allProjects
+    .filter((project) =>
+      selectedDetails.length === 0
+        ? true
+        : selectedDetails.some(
+            (detail) =>
+              (project.title ?? '').includes(detail) ||
+              (project.technology_name ?? '').includes(detail) ||
+              (project.category_name ?? '').includes(detail)
+          )
+    )
+    .sort((a, b) => {
+      const aIndex = selectedDetails.findIndex(
+        (detail) =>
+          (a.title ?? '').includes(detail) ||
+          (a.technology_name ?? '').includes(detail) ||
+          (a.category_name ?? '').includes(detail)
+      );
+      const bIndex = selectedDetails.findIndex(
+        (detail) =>
+          (b.title ?? '').includes(detail) ||
+          (b.technology_name ?? '').includes(detail) ||
+          (b.category_name ?? '').includes(detail)
+      );
+      return aIndex - bIndex;
+    });
+
+  const totalCount = filtered.length; // 전체 필터링 된 개수
+  // 화면에 보여줄 데이터 (10개씩 슬라이스)
+  const visibleProjects = filtered.slice(0, count * 10);
+  // 더보기 버튼 노출 여부
+  const hasMore = visibleProjects.length < filtered.length;
 
   // 더보기
   const fetchProjects = async (count: number) => {
@@ -48,44 +102,13 @@ export default function ProjectBox() {
     }
   };
 
+  const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isShow, setIsShow] = useState(true);
+
   useEffect(() => {
     fetchProjects(count);
   }, [count]);
-
-  // 전체 데이터 받기
-  const { data, isPending, isError } = useQuery({
-    queryKey: ['projects-all'],
-    queryFn: async () => {
-      const res = await fetch('http://localhost:3001/project/all');
-      if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
-      return res.json();
-    },
-  });
-  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 데이터 보관용
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    if (data?.projects) {
-      setAllProjects(data.projects);
-      console.log(data);
-    }
-  }, [data]);
-  const handleDetailFilter = (detail: string) => {
-    setFilterKeyword(detail);
-    setCount(1);
-  };
-
-  // 필터 적용된 데이터
-  const filtered = allProjects.filter((project) =>
-    project.title.includes(filterKeyword)
-  );
-
-  const totalCount = filtered.length; // 전체 필터링 된 개수
-  // 화면에 보여줄 데이터 (10개씩 슬라이스)
-  const visibleProjects = filtered.slice(0, count * 10);
-
-  // 더보기 버튼 노출 여부
-  const hasMore = visibleProjects.length < filtered.length;
 
   // 더보기 버튼 클릭 핸들러
   const handleLoadMore = () => {
