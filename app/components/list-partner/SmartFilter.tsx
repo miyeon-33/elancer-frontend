@@ -8,24 +8,25 @@ type Technology = {
 };
 
 type SmartFilterProps = {
-  onSelectDetail: (detail: string[]) => void;
+  onSelectDetail: (details: string[]) => void;
   selectedProficiencies: string[];
   onToggleProficiency: (label: string) => void;
+  selectedDurations: string[];
+  onToggleDuration: (label: string) => void;
 };
 
 export default function SmartFilter({
   onSelectDetail,
   selectedProficiencies,
   onToggleProficiency,
+  selectedDurations,
+  onToggleDuration,
 }: SmartFilterProps) {
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
   const [isOpen4, setIsOpen4] = useState(true);
-  const [isChecked3, setIsChecked3] = useState(false);
-  const [isChecked4, setIsChecked4] = useState(false);
-  const [isChecked5, setIsChecked5] = useState(false);
-  const [isChecked6, setIsChecked6] = useState(false);
+
   const [isChecked7, setIsChecked7] = useState(false);
   const [isChecked8, setIsChecked8] = useState(false);
   const [isChecked9, setIsChecked9] = useState(false);
@@ -34,6 +35,13 @@ export default function SmartFilter({
   const [isOpen2, setIsOpen2] = useState(true);
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
+
+  const durationFilters = [
+    { label: '1달 이하', test: (v: number) => v <= 1 },
+    { label: '3개월 이상', test: (v: number) => v >= 3 },
+    { label: '6개월 이상', test: (v: number) => v >= 6 },
+    { label: '1년 이상', test: (v: number) => v >= 12 },
+  ];
 
   // 숙련도 추출
   const proficiencyLevels = ['초급', '중급', '고급', '무관'];
@@ -67,23 +75,6 @@ export default function SmartFilter({
     '충북',
     '제주',
   ];
-
-  // 초기화버튼
-  const handleReset = () => {
-    setClickedMenu(null);
-    setIsOpen(true);
-    setIsOpen3(true);
-    setIsOpen4(true);
-    setIsChecked3(false);
-    setIsChecked4(false);
-    setIsChecked5(false);
-    setIsChecked6(false);
-    setIsChecked7(false);
-    setIsChecked8(false);
-    setIsChecked9(false);
-    setIsChecked10(false);
-    setSelectedLocation(null);
-  };
 
   // 기술데이터 가져오기
   const {
@@ -124,7 +115,6 @@ export default function SmartFilter({
           <button
             type="button"
             className="flex justify-end items-center gap-[1px] text-[#b5b4bb] text-[12px] font-normal"
-            onClick={handleReset}
           >
             <img src="/images/icons/reset.svg" />
             <span className="text-[#f3f4f6] text-[12px] font-medium">
@@ -269,7 +259,7 @@ export default function SmartFilter({
             )}
           </div>
           {/* 프로젝트 참여 기간 */}
-          {/* <div className="border-b border-[rgb(229,231,235)]">
+          <div className="border-b border-[rgb(229,231,235)]">
             <h3 className="flex">
               <button
                 type="button"
@@ -293,74 +283,27 @@ export default function SmartFilter({
             {isOpen4 && (
               <div className="px-[24px] overflow-hidden text-[14px]">
                 <div className="pb-[32px] gap-[6px] flex flex-col">
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => toggleProficiency(!isChecked7)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked7
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)]'
-                      }`}
-                    >
-                      {isChecked7 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">
-                      1달 이하
-                    </button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked8(!isChecked8)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked8
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked8 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">
-                      3개월 이상
-                    </button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked9(!isChecked9)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked9
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked9 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">
-                      6개월 이상
-                    </button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked10(!isChecked10)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked10
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked10 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">
-                      1년 이상
-                    </button>
-                  </label>
+                  {durationFilters.map(({ label }) => (
+                    <label key={label} className="flex items-center gap-[6px]">
+                      <div
+                        onClick={() => onToggleDuration(label)}
+                        className={`border rounded-[4px] w-[20px] h-[20px] cursor-pointer ${
+                          selectedDurations.includes(label)
+                            ? 'bg-[rgb(0,0,0)]'
+                            : 'border-[rgb(181,180,187)]'
+                        }`}
+                      >
+                        {selectedDurations.includes(label) && (
+                          <img src="images/icons/checked2.svg" />
+                        )}
+                      </div>
+                      <span className="text-[14px] font-normal">{label}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
             )}
-          </div> */}
+          </div>
           {/* 희망 근무 지역 */}
           <div>
             <h3 className="flex">

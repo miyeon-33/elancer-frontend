@@ -29,6 +29,20 @@ export default function ProjectBox() {
     []
   );
 
+  const [selectedDurations, setSelectedDurations] = useState<string[]>([]);
+  const toggleDuration = (label: string) => {
+    setSelectedDurations((prev) =>
+      prev.includes(label) ? prev.filter((d) => d !== label) : [...prev, label]
+    );
+  };
+
+  const durationFilters = [
+    { label: '1달 이하', test: (v: number) => v <= 1 },
+    { label: '3개월 이상', test: (v: number) => v >= 3 },
+    { label: '6개월 이상', test: (v: number) => v >= 6 },
+    { label: '1년 이상', test: (v: number) => v >= 12 },
+  ];
+
   const handleToggleProficiency = (label: string) => {
     setSelectedProficiencies((prev) =>
       prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
@@ -56,69 +70,37 @@ export default function ProjectBox() {
     setCount(1); // 필터 바뀌면 페이지를 초기화
   };
 
-  // 필터 적용된 데이터
-  // const filtered = allProjects
-  //   .filter((project) =>
-  //     selectedDetails.length === 0
-  //       ? true
-  //       : selectedDetails.some(
-  //           (detail) =>
-  //             (project.title ?? '').includes(detail) ||
-  //             (project.technology_name ?? '').includes(detail) ||
-  //             (project.category_name ?? '').includes(detail)
-  //         )
-  //   )
-  //   .sort((a, b) => {
-  //     const aIndex = selectedDetails.findIndex(
-  //       (detail) =>
-  //         (a.title ?? '').includes(detail) ||
-  //         (a.technology_name ?? '').includes(detail) ||
-  //         (a.category_name ?? '').includes(detail)
-  //     );
-  //     const bIndex = selectedDetails.findIndex(
-  //       (detail) =>
-  //         (b.title ?? '').includes(detail) ||
-  //         (b.technology_name ?? '').includes(detail) ||
-  //         (b.category_name ?? '').includes(detail)
-  //     );
-  //     return aIndex - bIndex;
-  //   });
+  const filtered = allProjects.filter((project) => {
+    const matchDetail =
+      selectedDetails.length === 0 ||
+      selectedDetails.some(
+        (keyword) =>
+          (project.title ?? '').includes(keyword) ||
+          (project.technology_name ?? '').includes(keyword) ||
+          (project.category_name ?? '').includes(keyword)
+      );
 
-  const filtered = allProjects
-    .filter((project) => {
-      const matchDetail =
-        selectedDetails.length === 0 ||
-        selectedDetails.some(
-          (detail) =>
-            (project.title ?? '').includes(detail) ||
-            (project.technology_name ?? '').includes(detail) ||
-            (project.category_name ?? '').includes(detail)
+    const matchProficiency =
+      selectedProficiencies.length === 0 ||
+      selectedProficiencies.some(
+        (keyword) =>
+          (project.title ?? '').includes(keyword) ||
+          (project.technology_name ?? '').includes(keyword) ||
+          (project.category_name ?? '').includes(keyword)
+      );
+
+    const matchDuration =
+      selectedDurations.length === 0 ||
+      selectedDurations.some((label) => {
+        const rule = durationFilters.find((d) => d.label === label);
+        const months = Number(
+          (project.project_duration ?? '').replace(/[^0-9]/g, '')
         );
+        return rule?.test?.(months);
+      });
 
-      const matchProficiency =
-        selectedProficiencies.length === 0 ||
-        selectedProficiencies.some(
-          (prof) =>
-            (project.title ?? '').includes(prof) ||
-            (project.technology_name ?? '').includes(prof) ||
-            (project.category_name ?? '').includes(prof)
-        );
-
-      return matchDetail && matchProficiency;
-    })
-    .sort((a, b) => {
-      const getIndex = (project: Project) => {
-        const keywordList = [...selectedDetails, ...selectedProficiencies];
-        return keywordList.findIndex(
-          (keyword) =>
-            (project.title ?? '').includes(keyword) ||
-            (project.technology_name ?? '').includes(keyword) ||
-            (project.category_name ?? '').includes(keyword)
-        );
-      };
-
-      return getIndex(a) - getIndex(b);
-    });
+    return matchDetail && matchProficiency && matchDuration;
+  });
 
   const totalCount = filtered.length; // 전체 필터링 된 개수
   // 화면에 보여줄 데이터 (10개씩 슬라이스)
@@ -140,6 +122,8 @@ export default function ProjectBox() {
             onSelectDetail={handleDetailFilter}
             selectedProficiencies={selectedProficiencies}
             onToggleProficiency={handleToggleProficiency}
+            selectedDurations={selectedDurations}
+            onToggleDuration={toggleDuration}
           />
           <Project
             projects={visibleProjects}
