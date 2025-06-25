@@ -9,9 +9,15 @@ type Technology = {
 
 type SmartFilterProps = {
   onSelectDetail: (detail: string[]) => void;
+  selectedProficiencies: string[];
+  onToggleProficiency: (label: string) => void;
 };
 
-export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
+export default function SmartFilter({
+  onSelectDetail,
+  selectedProficiencies,
+  onToggleProficiency,
+}: SmartFilterProps) {
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
@@ -28,6 +34,9 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
   const [isOpen2, setIsOpen2] = useState(true);
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
+
+  // 숙련도 추출
+  const proficiencyLevels = ['초급', '중급', '고급', '무관'];
 
   const handleDetailClick = (detail: string) => {
     const updated = selectedDetails.includes(detail)
@@ -75,13 +84,6 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
     setIsChecked10(false);
     setSelectedLocation(null);
   };
-
-  // 숙련도 추출
-  const selectedProficiencies: string[] = [];
-  if (isChecked3) selectedProficiencies.push('초급');
-  if (isChecked4) selectedProficiencies.push('중급');
-  if (isChecked5) selectedProficiencies.push('고급');
-  if (isChecked6) selectedProficiencies.push('무관');
 
   // 기술데이터 가져오기
   const {
@@ -245,68 +247,29 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
             {isOpen3 && (
               <div className="px-[24px] overflow-hidden text-[14px]">
                 <div className="pb-[32px] gap-[6px] flex flex-col">
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked3(!isChecked3)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked3 ? 'bg-black' : 'border-[rgb(181,180,187)]'
-                      }`}
-                    >
-                      {isChecked3 && (
-                        <img src="images/icons/checked2.svg" alt="선택됨" />
-                      )}
-                    </button>
-                    <button className="text-[14px] font-normal">초급</button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked4(!isChecked4)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked4
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked4 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">중급</button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked5(!isChecked5)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked5
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked5 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">고급</button>
-                  </label>
-                  <label className="flex items-center gap-[6px]">
-                    <button
-                      type="button"
-                      onClick={() => setIsChecked6(!isChecked6)}
-                      className={`border rounded-[4px] w-[20px] h-[20px] ${
-                        isChecked6
-                          ? 'bg-[rgb(0,0,0)]'
-                          : 'border-[rgb(181,180,187)] '
-                      }`}
-                    >
-                      {isChecked6 && <img src="images/icons/checked2.svg" />}
-                    </button>
-                    <button className="text-[14px] font-normal">무관</button>
-                  </label>
+                  {proficiencyLevels.map((label) => (
+                    <label key={label} className="flex items-center gap-[6px]">
+                      <div
+                        onClick={() => onToggleProficiency(label)}
+                        className={`border rounded-[4px] w-[20px] h-[20px] cursor-pointer ${
+                          selectedProficiencies.includes(label)
+                            ? 'bg-black'
+                            : 'border-[rgb(181,180,187)]'
+                        }`}
+                      >
+                        {selectedProficiencies.includes(label) && (
+                          <img src="images/icons/checked2.svg" alt="선택됨" />
+                        )}
+                      </div>
+                      <span>{label}</span>
+                    </label>
+                  ))}
                 </div>
               </div>
             )}
           </div>
           {/* 프로젝트 참여 기간 */}
-          <div className="border-b border-[rgb(229,231,235)]">
+          {/* <div className="border-b border-[rgb(229,231,235)]">
             <h3 className="flex">
               <button
                 type="button"
@@ -333,7 +296,7 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
                   <label className="flex items-center gap-[6px]">
                     <button
                       type="button"
-                      onClick={() => setIsChecked7(!isChecked7)}
+                      onClick={() => toggleProficiency(!isChecked7)}
                       className={`border rounded-[4px] w-[20px] h-[20px] ${
                         isChecked7
                           ? 'bg-[rgb(0,0,0)]'
@@ -397,7 +360,7 @@ export default function SmartFilter({ onSelectDetail }: SmartFilterProps) {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
           {/* 희망 근무 지역 */}
           <div>
             <h3 className="flex">
