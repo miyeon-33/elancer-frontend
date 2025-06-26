@@ -23,13 +23,25 @@ type Project = {
 
 export default function ProjectBox() {
   const [count, setCount] = useState(1); // 더보기 클릭 횟수
-  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 데이터(필터전용)
-  const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
+  const [allProjects, setAllProjects] = useState<Project[]>([]); // 전체 프로젝트 목록
+  const [selectedDetails, setSelectedDetails] = useState<string[]>([]); // 상세기술 키워드
   const [selectedProficiencies, setSelectedProficiencies] = useState<string[]>(
     []
-  );
+  ); // 숙련도 선택
+  const [selectedDurations, setSelectedDurations] = useState<string[]>([]); // 참여 기간 선택
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null); // 지역
 
-  const [selectedDurations, setSelectedDurations] = useState<string[]>([]);
+  const handleDetailFilter = (details: string[]) => {
+    setSelectedDetails(details); // 필터 키워드 설정
+    setCount(1); // 필터 바뀌면 페이지를 초기화
+  };
+
+  const handleToggleProficiency = (label: string) => {
+    setSelectedProficiencies((prev) =>
+      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
+    );
+  };
+
   const toggleDuration = (label: string) => {
     setSelectedDurations((prev) =>
       prev.includes(label) ? prev.filter((d) => d !== label) : [...prev, label]
@@ -43,13 +55,7 @@ export default function ProjectBox() {
     { label: '1년 이상', test: (v: number) => v >= 12 },
   ];
 
-  const handleToggleProficiency = (label: string) => {
-    setSelectedProficiencies((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
-    );
-  };
-
-  // 전체 데이터 받기
+  // 서버 데이터 요청
   const { data, isPending, isError } = useQuery({
     queryKey: ['projects-all'],
     queryFn: async () => {
@@ -64,11 +70,6 @@ export default function ProjectBox() {
       setAllProjects(data.projects);
     }
   }, [data]);
-
-  const handleDetailFilter = (details: string[]) => {
-    setSelectedDetails(details); // 필터 키워드 설정
-    setCount(1); // 필터 바뀌면 페이지를 초기화
-  };
 
   const filtered = allProjects.filter((project) => {
     const matchDetail =
@@ -99,8 +100,19 @@ export default function ProjectBox() {
         return rule?.test?.(months);
       });
 
-    return matchDetail && matchProficiency && matchDuration;
+    const matchLocation =
+      !selectedLocation || project.location === selectedLocation;
+
+    return matchDetail && matchProficiency && matchDuration && matchLocation;
   });
+
+  // 초기화 버튼
+  const handleResetFilters = () => {
+    setSelectedDetails([]);
+    setSelectedProficiencies([]);
+    setSelectedDurations([]);
+    setSelectedLocation(null);
+  };
 
   const totalCount = filtered.length; // 전체 필터링 된 개수
   // 화면에 보여줄 데이터 (10개씩 슬라이스)
@@ -124,6 +136,9 @@ export default function ProjectBox() {
             onToggleProficiency={handleToggleProficiency}
             selectedDurations={selectedDurations}
             onToggleDuration={toggleDuration}
+            onResetFilters={handleResetFilters}
+            selectedLocation={selectedLocation}
+            onSelectedLocation={setSelectedLocation}
           />
           <Project
             projects={visibleProjects}

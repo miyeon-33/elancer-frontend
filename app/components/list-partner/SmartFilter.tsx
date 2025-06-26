@@ -13,6 +13,9 @@ type SmartFilterProps = {
   onToggleProficiency: (label: string) => void;
   selectedDurations: string[];
   onToggleDuration: (label: string) => void;
+  onResetFilters: () => void;
+  selectedLocation: string | null;
+  onSelectedLocation: (location: string) => void;
 };
 
 export default function SmartFilter({
@@ -21,17 +24,14 @@ export default function SmartFilter({
   onToggleProficiency,
   selectedDurations,
   onToggleDuration,
+  onResetFilters,
+  selectedLocation,
+  onSelectedLocation,
 }: SmartFilterProps) {
   const [clickedMenu, setClickedMenu] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [isOpen3, setIsOpen3] = useState(true);
   const [isOpen4, setIsOpen4] = useState(true);
-
-  const [isChecked7, setIsChecked7] = useState(false);
-  const [isChecked8, setIsChecked8] = useState(false);
-  const [isChecked9, setIsChecked9] = useState(false);
-  const [isChecked10, setIsChecked10] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [isOpen2, setIsOpen2] = useState(true);
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]);
@@ -104,6 +104,12 @@ export default function SmartFilter({
     }
   }, [techData]);
 
+  // 초기화
+  const handleReset = () => {
+    setSelectedDetails([]); // 디테일 선택 초기화
+    onResetFilters(); // 부모 상태 초기화 (숙련도, 참여기간 등)
+  };
+
   return (
     <div>
       {/* 스마트 필터 */}
@@ -115,6 +121,7 @@ export default function SmartFilter({
           <button
             type="button"
             className="flex justify-end items-center gap-[1px] text-[#b5b4bb] text-[12px] font-normal"
+            onClick={handleReset}
           >
             <img src="/images/icons/reset.svg" />
             <span className="text-[#f3f4f6] text-[12px] font-medium">
@@ -338,7 +345,7 @@ export default function SmartFilter({
                             <button
                               key={loc}
                               type="button"
-                              onClick={() => setSelectedLocation(loc)}
+                              onClick={() => onSelectedLocation(loc)}
                               className={`text-[14px] font-bold text-left flex items-center gap-[4px] ${
                                 isSelected
                                   ? 'text-[#000]'
