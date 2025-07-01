@@ -13,6 +13,67 @@ export default function Manager() {
     { number: 5, title: '프로젝트 완료', step: 'STEP 5' },
   ];
 
+  type StepContent = {
+    label: string;
+    description: string;
+    items: string[];
+    image: string;
+  };
+
+  const stepContents: Record<number, StepContent> = {
+    1: {
+      label: '1. 프로젝트 등록',
+      description:
+        '프로젝트 등록 시 이랜서의 최적화 시스템을 통해\n간편하게 의뢰하고 상담할 수 있어요!',
+      items: [
+        '이랜서 전담 매니저와 상담을 통해 프리랜서가 이해할 수 있는 용어로 프로젝트 내용을 수정해 드려요.',
+        '프로젝트 상담 시 최대한 상세히 정보를 알려주시면 최적의 개발자를 배정해 드려요.',
+      ],
+      image: '/images/icons/serviceImage1.263b1eac.svg',
+    },
+    2: {
+      label: '2. 견적 상담',
+      description:
+        '꼼꼼하고 친절한 이랜서 담당 매니저와 함께\n프로젝트 상담 및 견적을 진행해 보세요!',
+      items: [
+        '진행하고자 하는 프로젝트와 관련된 전반적인 분석을 통해 제안 및 견적을 받아보실 수 있어요.',
+        '유사한 경험이 있는 전문가를 매칭해 드려요.',
+      ],
+      image: '/images/icons/serviceImage2.1e3d979e.svg',
+    },
+    3: {
+      label: '3. 안전 계약',
+      description:
+        '안전 계약 시스템을 통해 아웃소싱에 최적화된\n계약을 진행해 드려요',
+      items: [
+        '현재 프로젝트에 적절한 예산범위를 공정하고 합리적인 금액으로 안내해 드립니다.',
+        '계약조건, 업무 범위, 일정 등을 사전에 협의한 후 공정한 계약을 도와드립니다.',
+      ],
+      image: '/images/icons/serviceImage3.0f1ddfe8.svg',
+    },
+    4: {
+      label: '4. 진행 과정',
+      description:
+        '신뢰할 수 있는 프로젝트 관리 체계로\n차질없는 진행을 약속드려요!',
+      items: [
+        '프로젝트 진행 과정에 있어 밀착 소통하여 문제가 발생할 경우 즉각적으로 도움을 드려요.',
+        '진행중인 프로젝트에 집중하실 수 있게 전반적인 서포트 역할을 약속드려요.',
+      ],
+      image: '/images/icons/serviceImage4.810cd896.svg',
+    },
+    5: {
+      label: '5. 프로젝트 완료',
+      description:
+        '검증된 프리랜서 플랫폼 이랜서는 성공적인 프로젝트완료까지 100% 보장합니다.',
+      items: [
+        '98% 이상의 프로젝트 재의뢰율을 자랑하는 이랜서에서 완료 시점까지 책임지고 보장해 드려요',
+      ],
+      image: '/images/icons/serviceImage5.796635ae.svg',
+    },
+  };
+
+  const content = stepContents[activeStep];
+
   return (
     <div className="max-md:px-[20px] max-sm:px-[20px] mx-auto max-w-[1200px]">
       <div className="flex flex-col items-start gap-[56px] max-sm:w-full max-sm:gap-[32px] max-sm:mb-[68px]">
@@ -28,17 +89,27 @@ export default function Manager() {
             </p>
           </div>
           <div className="flex items-center gap-[8px] max-sm:hidden">
-            <button type="button">
+            <button
+              type="button"
+              onClick={() =>
+                setActiveStep((prev) => (prev === 1 ? 5 : prev - 1))
+              }
+            >
               <img src="/images/icons/ico-mainServiceLeftArrow.e2080465.svg" />
             </button>
-            <button type="button">
+            <button
+              type="button"
+              onClick={() =>
+                setActiveStep((prev) => (prev === 5 ? 1 : prev + 1))
+              }
+            >
               <img src="/images/icons/ico-mainServiceRightArrow.c7ab1c48.svg" />
             </button>
           </div>
         </div>
         <div className="flex items-start gap-[32px] self-stretch max-sm:flex-col">
           {/* 왼쪽번호 */}
-          <div className="w-[274px] flex flex-col items-start max-sm:w-full max-sm:overflow-hidden max-sm:flex-row max-sm:gap-[8px] max-sm:px-[20px] max-sm:max-w-full">
+          <div className="w-[274px] flex flex-col items-start max-sm:w-full max-sm:overflow-hidden max-sm:flex-row max-sm:gap-[8px] max-sm:px-[20px] max-sm:max-w-full max-md:w-[274px]">
             {steps.map(({ number, title, step }) => (
               <div
                 key={number}
@@ -89,10 +160,10 @@ export default function Manager() {
                       {step}
                     </p>
                     <p
-                      className={`break-keep ${
+                      className={`break-keep font-bold text-[24px] whitespace-nowrap overflow-hidden text-ellipsis ${
                         activeStep === number
-                          ? 'text-[rgb(27,28,30)] text-[24px] font-bold max-sm:text-[16px]'
-                          : 'text-[rgb(138,138,147)] text-[24px] font-bold max-sm:text-[16px]'
+                          ? 'text-[rgb(27,28,30)] max-sm:text-[16px]'
+                          : 'text-[rgb(138,138,147)] max-sm:text-[16px]'
                       }`}
                     >
                       {title}
@@ -112,38 +183,35 @@ export default function Manager() {
             <div className="w-[500px] flex h-auto flex-col items-start gap-[32px] max-sm:w-full max-sm:gap-[20px]">
               <div className="flex flex-col items-start gap-[16px] self-stretch">
                 <div className="flex py-[3px] pr-[12px] pl-[8px] justify-center items-center gap-[8px] rounded-[4px] bg-[rgb(255,227,221)] text-[14px] font-semibold text-[rgb(255,105,72)] max-sm:py-[2px] max-sm:pr-[8px] max-sm:pl-[6px] max-sm:text-[13px]">
-                  1. 프로젝트 등록
+                  {content.label}
                 </div>
                 <div className="min-h-[78px] w-full text-[rgb(27,28,30)] text-[26px] font-bold max-sm:min-h-[54px] max-sm:text-[18px]">
-                  프로젝트 등록 시 이랜서의 최적화 시스템을 통해
-                  <br />
-                  간편하게 의뢰하고 상담할 수 있어요!
+                  {content.description.split('\n').map((line, idx) => (
+                    <span key={idx}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
                 </div>
               </div>
-              <div className="flex flex-col items-start gap-[16px] self-stretch max-sm:gap-[8px]">
-                <div className="flex items-start gap-[2px]">
-                  <img src="/images/icons/ico-check-orange.e717a6fc.svg" />
-                  <div className="text-[rgb(56,56,61)] text-[16px] font-normal max-sm:text-[14px]">
-                    이랜서 전담 매니저와 상담을 통해 프리랜서가 이해할 수 있는
-                    용어로
-                    <br className="max-sm:hidden" />
-                    프로젝트 내용을 수정해 드려요.
+              <div className="flex flex-col items-start self-stretch max-sm:gap-[8px]">
+                {content.items.map((item, index) => (
+                  <div key={index} className="w-full flex flex-col gap-[16px]">
+                    <div className="flex items-start gap-[2px]">
+                      <img src="/images/icons/ico-check-orange.e717a6fc.svg" />
+                      <div className="text-[#38383d] text-[16px] font-normal max-sm:text-[14px]">
+                        {item}
+                      </div>
+                    </div>
+                    {index !== content.items.length - 1 && activeStep !== 5 && (
+                      <div className="h-[1px] bg-[rgb(236,236,241)] self-stretch mb-[16px]" />
+                    )}
                   </div>
-                </div>
-                <div className="h-[1px] bg-[rgb(236,236,241)] self-stretch"></div>
-                <div className="flex items-start gap-[2px]">
-                  <img src="/images/icons/ico-check-orange.e717a6fc.svg" />
-                  <div className="text-[rgb(56,56,61)] text-[16px] font-normal max-sm:text-[14px]">
-                    프로젝트 상담 시 최대한 상세히 정보를 알려주시면 최적의
-                    개발자를
-                    <br className="max-sm:hidden" />
-                    배정해 드려요.
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             <div className="flex w-[274px] h-[274px] justify-center items-center max-sm:w-[156px] max-sm:h-full max-sm:shrink-0">
-              <img src="/images/icons/serviceImage1.263b1eac.svg" />
+              <img src={content.image} alt={content.label} />
             </div>
           </div>
         </div>
