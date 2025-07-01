@@ -1,7 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState } from 'react';
 
 type Category = {
   category_id: number;

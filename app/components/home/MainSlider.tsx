@@ -7,10 +7,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Link from 'next/link';
 import styles from './MainSlider.module.css';
-import { useState } from 'react';
 
 export default function MainSlider() {
-  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className="max-w-[1200px] h-[260px] rounded-[24px] mt-[32px] relative max-sm:mt-0 max-sm:pt-[20px] max-md:px-[20px] max-sm:px-[20px] mx-auto">
       <Swiper

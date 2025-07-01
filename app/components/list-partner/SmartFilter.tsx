@@ -77,11 +77,7 @@ export default function SmartFilter({
   ];
 
   // 기술데이터 가져오기
-  const {
-    data: techData,
-    isLoading: isTechLoading,
-    isError: isTechError,
-  } = useQuery<Technology[]>({
+  const { data: techData } = useQuery<Technology[]>({
     queryKey: ['technologies'],
     queryFn: async () => {
       const res = await fetch('http://localhost:3001/technology');
@@ -90,7 +86,6 @@ export default function SmartFilter({
       return raw;
     },
   });
-
   useEffect(() => {
     if (techData) {
       const parsed = techData.map((tech: any) => ({
