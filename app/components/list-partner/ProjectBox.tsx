@@ -56,11 +56,13 @@ export default function ProjectBox() {
   ];
 
   // 서버 데이터 요청
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['projects-all'],
     queryFn: async () => {
       const res = await fetch('http://localhost:3001/project/all');
+
       if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
+
       return res.json();
     },
   });

@@ -48,11 +48,11 @@ export default function SmartFilter({
 
   const handleDetailClick = (detail: string) => {
     const updated = selectedDetails.includes(detail)
-      ? selectedDetails.filter((d) => d !== detail) // 이미 있으면 제거
-      : [...selectedDetails, detail]; // 없으면 추가
+      ? selectedDetails.filter((d) => d !== detail)
+      : [...selectedDetails, detail];
 
     setSelectedDetails(updated);
-    onSelectDetail(updated); // ✅ 배열 전체를 부모로 전달
+    onSelectDetail(updated);
   };
 
   // 지역
@@ -106,8 +106,8 @@ export default function SmartFilter({
 
   // 초기화
   const handleReset = () => {
-    setSelectedDetails([]); // 디테일 선택 초기화
-    onResetFilters(); // 부모 상태 초기화 (숙련도, 참여기간 등)
+    setSelectedDetails([]);
+    onResetFilters();
   };
 
   return (

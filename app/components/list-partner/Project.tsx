@@ -43,9 +43,6 @@ export default function Project({
   const [selectedSort, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
 
-  const [filteredProjects, setFilteredProjects] = useState<Project[] | null>(
-    null
-  );
   // 카테고리 데이터 가져오기
   useEffect(() => {
     const fetchCategories = async () => {
