@@ -21,6 +21,8 @@ type Project = {
   category_name: string;
 };
 
+type SortOption = 'latest' | 'startDate' | 'deadline';
+
 export default function ProjectBox() {
   const [count, setCount] = useState(1); // 더보기 클릭 횟수
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]); // 상세기술 키워드
@@ -31,6 +33,7 @@ export default function ProjectBox() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null); // 지역
 
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색어 상태
+  const [sortBy, setSortBy] = useState<SortOption>('latest');
 
   const handleDetailFilter = (details: string[]) => {
     setSelectedDetails(details); // 필터 키워드 설정
@@ -101,8 +104,15 @@ export default function ProjectBox() {
   const filteredProjects = allProjects.filter((project: Project) =>
     project.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
-  const visibleProjects = filteredProjects.slice(0, count * 10);
-  const totalCount = filteredProjects.length;
+  const sortedProjects = [...filteredProjects].sort((a, b) => {
+    if (sortBy === 'deadline') {
+      return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+    } else {
+      return b.project_id - a.project_id;
+    }
+  });
+  const visibleProjects = sortedProjects.slice(0, count * 10);
+  const totalCount = sortedProjects.length;
   const hasMore = visibleProjects.length < totalCount;
 
   const handleLoadMore = () => setCount((prev) => prev + 1);
@@ -128,6 +138,8 @@ export default function ProjectBox() {
             onLoadMore={handleLoadMore}
             isShowMore={hasMore}
             totalCount={totalCount}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
           />
         </div>
       </div>

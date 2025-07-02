@@ -7,12 +7,16 @@ type Category = {
   category_name: string;
 };
 
+type SortOption = 'latest' | 'startDate' | 'deadline';
+
 type ProjectProps = {
   projects: Project[];
   isLoading: boolean;
   onLoadMore: () => void;
   isShowMore: boolean;
   totalCount: number;
+  sortBy: SortOption;
+  onSortChange: (value: SortOption) => void;
 };
 
 type Project = {
@@ -36,6 +40,8 @@ export default function Project({
   onLoadMore,
   isShowMore,
   totalCount,
+  sortBy,
+  onSortChange,
 }: ProjectProps) {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -73,14 +79,14 @@ export default function Project({
           <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px]">
             <button
               type="button"
-              onClick={() => setSelectedSort('latest')}
+              onClick={() => onSortChange('deadline')}
               className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
-                selectedSort === 'latest' ? 'bg-[#38383d] ' : ''
+                sortBy === 'deadline' ? 'bg-[#38383d] ' : ''
               }`}
             >
               <p
                 className={`text-[13px] ${
-                  selectedSort === 'latest' ? 'text-[#fff]' : 'text-[#c9c8cd]'
+                  sortBy === 'deadline' ? 'text-[#fff]' : 'text-[#c9c8cd]'
                 }`}
               >
                 최신 등록 순
@@ -91,14 +97,12 @@ export default function Project({
               type="button"
               onClick={() => setSelectedSort('startDate')}
               className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
-                selectedSort === 'startDate' ? 'bg-[#38383d]' : ''
+                sortBy === 'startDate' ? 'bg-[#38383d]' : ''
               }`}
             >
               <p
                 className={`text-[13px] ${
-                  selectedSort === 'startDate'
-                    ? 'text-[#fff]'
-                    : 'text-[#c9c8cd]'
+                  sortBy === 'startDate' ? 'text-[#fff]' : 'text-[#c9c8cd]'
                 }`}
               >
                 시작 예정일 순
@@ -107,14 +111,16 @@ export default function Project({
             <div className="bg-[#38383d] w-[1px] h-[30px]"></div>
             <button
               type="button"
-              onClick={() => setSelectedSort('deadline')}
+              onClick={() => {
+                onSortChange('latest');
+              }}
               className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
-                selectedSort === 'deadline' ? 'bg-[#38383d]' : ''
+                sortBy === 'latest' ? 'bg-[#38383d]' : ''
               }`}
             >
               <p
                 className={`text-[13px] ${
-                  selectedSort === 'deadline' ? 'text-[#fff]' : 'text-[#c9c8cd]'
+                  sortBy === 'latest' ? 'text-[#fff]' : 'text-[#c9c8cd]'
                 }`}
               >
                 마감 임박 순
