@@ -21,7 +21,7 @@ type Project = {
   category_name: string;
 };
 
-type SortOption = 'latest' | 'startDate' | 'deadline';
+type SortOption = 'latest' | 'deadline' | 'startDate';
 
 export default function ProjectBox() {
   const [count, setCount] = useState(1); // 더보기 클릭 횟수
@@ -105,10 +105,20 @@ export default function ProjectBox() {
     project.title.toLowerCase().includes(searchKeyword.toLowerCase())
   );
   const sortedProjects = [...filteredProjects].sort((a, b) => {
+    const extractDays = (str: string): number => {
+      const match = str.match(/\d+/);
+      return match ? parseInt(match[0], 10) : Number.MAX_SAFE_INTEGER;
+    };
+
     if (sortBy === 'deadline') {
-      return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
+      return extractDays(a.deadline) - extractDays(b.deadline);
+    } else if (sortBy === 'startDate') {
+      return (
+        new Date(a.project_duration).getTime() -
+        new Date(b.project_duration).getTime()
+      );
     } else {
-      return b.project_id - a.project_id;
+      return a.project_id - b.project_id; // ✅ 오래된 순 (project_id 낮은 게 먼저)
     }
   });
   const visibleProjects = sortedProjects.slice(0, count * 10);

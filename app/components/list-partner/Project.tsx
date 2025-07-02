@@ -79,14 +79,14 @@ export default function Project({
           <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px]">
             <button
               type="button"
-              onClick={() => onSortChange('deadline')}
+              onClick={() => onSortChange('latest')}
               className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
-                sortBy === 'deadline' ? 'bg-[#38383d] ' : ''
+                sortBy === 'latest' ? 'bg-[#38383d] ' : ''
               }`}
             >
               <p
                 className={`text-[13px] ${
-                  sortBy === 'deadline' ? 'text-[#fff]' : 'text-[#c9c8cd]'
+                  sortBy === 'latest' ? 'text-[#fff]' : 'text-[#c9c8cd]'
                 }`}
               >
                 최신 등록 순
@@ -112,15 +112,15 @@ export default function Project({
             <button
               type="button"
               onClick={() => {
-                onSortChange('latest');
+                onSortChange('deadline');
               }}
               className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
-                sortBy === 'latest' ? 'bg-[#38383d]' : ''
+                sortBy === 'deadline' ? 'bg-[#38383d]' : ''
               }`}
             >
               <p
                 className={`text-[13px] ${
-                  sortBy === 'latest' ? 'text-[#fff]' : 'text-[#c9c8cd]'
+                  sortBy === 'deadline' ? 'text-[#fff]' : 'text-[#c9c8cd]'
                 }`}
               >
                 마감 임박 순
@@ -184,14 +184,6 @@ export default function Project({
                     <p className="h-[22px] text-[#ff6948] font-semibold text-[14px] whitespace-nowrap">
                       {project.category_name}
                     </p>
-                    <div className="flex gap-[2px] max-h-[46px] flex-wrap">
-                      <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
-                        JAVA
-                      </span>
-                      <span className="h-[22px] rounded-[16px] py-[2px] px-[8px] bg-[#fbf3f1] text-[#ff6948] text-[12px] font-medium">
-                        API
-                      </span>
-                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col gap-[16px] min-w-[147px]">
