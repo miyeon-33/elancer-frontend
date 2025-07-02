@@ -30,6 +30,8 @@ export default function ProjectBox() {
   const [selectedDurations, setSelectedDurations] = useState<string[]>([]); // 참여 기간 선택
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null); // 지역
 
+  const [searchKeyword, setSearchKeyword] = useState(''); // 검색어 상태
+
   const handleDetailFilter = (details: string[]) => {
     setSelectedDetails(details); // 필터 키워드 설정
     setCount(1); // 필터 바뀌면 페이지를 초기화
@@ -96,8 +98,11 @@ export default function ProjectBox() {
   });
 
   const allProjects = data?.projects || [];
-  const visibleProjects = allProjects.slice(0, count * 10);
-  const totalCount = allProjects.length;
+  const filteredProjects = allProjects.filter((project: Project) =>
+    project.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
+  const visibleProjects = filteredProjects.slice(0, count * 10);
+  const totalCount = filteredProjects.length;
   const hasMore = visibleProjects.length < totalCount;
 
   const handleLoadMore = () => setCount((prev) => prev + 1);
@@ -105,7 +110,7 @@ export default function ProjectBox() {
   return (
     <div className="max-w-[1200px] mx-auto max-md:px-[20px] max-sm:p-0 pb-[40px]">
       <div className="p-[24px] bg-[rgb(42,43,46)] rounded-[16px] max-sm:p-[16px] max-sm:rounded-none">
-        <Search />
+        <Search onSearch={(keyword) => setSearchKeyword(keyword)} />
         <div className="flex gap-[80px] my-[56px]">
           <SmartFilter
             onSelectDetail={handleDetailFilter}

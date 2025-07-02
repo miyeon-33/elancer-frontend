@@ -3,6 +3,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
+type Card = {
+  id: number;
+  image: string;
+  title: string;
+  summary?: string;
+};
+
 export default function News() {
   const [activeButton, setActiveButton] = useState<number>(1);
 
@@ -11,6 +18,91 @@ export default function News() {
     { id: 2, label: '커뮤니티' },
     { id: 3, label: '이랜서 TV' },
   ];
+
+  const cardData: Record<number, Card[]> = {
+    1: [
+      {
+        id: 101,
+        image: '/images/870_mo_1.jpg',
+        title: '현실이 된 SF 소설: 뉴로맨서',
+        summary:
+          '사이버스페이스의 대부인 윌리엄 깁슨이 그린 미래1984년 윌리엄 깁슨이 발표한『뉴로맨서』는 근미래 디스토피아를 배경으로 하는 사이버펑크 소설의 걸작이다.뉴로맨서라는 단어는 뉴로와 맨서, 즉신경 + 예언자(마법사)라는 단어로 조합하여 만든 신조어이다.주인공은 컴퓨터 해커 케이스(Henry Case)로, 이전 회사를 배신하여 신경독소에 의해 사이버스페이스에 접속할 수 있는 능력을 잃었다.밑바닥 인생을 전전하던 케이스를아미티지(Armitage)라는 의문의 인물이 접근하여 사이버스페이스에 접근할 수 있게 해주는 조건으로사이보그 암살자 몰리',
+      },
+      {
+        id: 102,
+        image: '/images/867_mo_1.jpg',
+        title:
+          'AI 시대의 IT 프리랜서를 활용하는 6가지 전략: 기업혁신의 새로운 기회',
+        summary:
+          'AI가 일상과 비즈니스 전반에 스며들면서 기업들의 인력 운용 방식도 급속히 변화하고 있다.특히 IT 분야에서는 AI 도구의 등장으로 개발 속도가 빨라지고 업무 효율성이 크게 향상되면서, 프리랜서 활용에 대한 새로운 패러다임이 형성되고 있다.AI 시대에 IT 프리랜서를 전략적으로 활용하는 방법을 살펴보자.1. AI 네이티브 프리랜서의 활용AI 도구에 능숙한 프리랜서들은 기존 개발자보다 월등한 생산성을 보여준다.GitHub Copilot, ChatGPT,Claude와 같은 AI 도구를 능숙하게 다루는 프리랜서는 코드 작성 속도가 2-3',
+      },
+      {
+        id: 103,
+        image: '/images/866_mo_1.jpg',
+        title:
+          '[스탠포드 황승진 교수님 칼럼]  AI 시대, ‘이런 기업’이 살아남는다',
+        summary:
+          'AI는 이제 새로운 세상을 만들어가고 있습니다. 마치 인터넷이 전 세계 네트워크를 연결하며 세상을 바꿨듯,AI 역시 이전에 없던 서비스를 탄생시키며 산업의 판도를 바꾸고 있죠.그렇다면AI가 만들어가는 세상에서 살아남기 위해 우리는 어떻게 준비해야 할까요?지금의 변화 속에서 어떤 기업들이 살아남았는지를 돌아보며, 한국인 최초 스탠포드 종신 교수이자 현재 스탠포드 경영 대학원 명예교수로 활동 중인황승진 교수님의 칼럼을 통해 그 해답의 실마리를 함께 찾아봅니다.AI와 경쟁력 – 별의 순간경영의 역사를 보면, 신기술에 관한 어느 한 순간의',
+      },
+      {
+        id: 104,
+        image: '/images/863_mo_1.jpg',
+        title:
+          '[스탠포드 황승진 교수님 칼럼] AI의 문제, 실리콘밸리는 어떤 아려움을 겪고 있을까',
+        summary:
+          'AI의 학습 속도는 인간의 통제를 뛰어넘고 있습니다. 뛰어난 학습 능력을 바탕으로 한 악용 사례도 꾸준히 발생하고 있는데요.인류는 오래전부터 영화와 소설을 통해 AI가 인간을 위협하는 모습을 그려오며, 그 위험성을 경고해왔습니다.이러한 상상은 단순한 일자리 대체를 넘어, 훨씬 더 심각하고 복잡한 문제로 다뤄지고 있는데요.그렇다면 AI가 초래하는 위험들은 어떤 모습으로 그려지고 있을까요?한국인 최초 스탠포드 종신 교수이자 현재스탠포드 경영 대학원 명예교수인황승진 교수님의 칼럼을 통해실리콘밸리에서 발생하는 AI 악용 사례와 AI의 어두',
+      },
+    ],
+    2: [
+      {
+        id: 201,
+        image: '/images/819_mo_7.png',
+        title:
+          '일본 현지에서 진행되는 IT 프로젝트에 참여 가능한 회원님들의 수요조사를 진행합니다!',
+      },
+      {
+        id: 202,
+        image: '/images/800_mo_6.png',
+        title:
+          '달리고 싶은 IT 인들 모여라! 이랜서 런클럽 ERC 4기 최종 발표 안내',
+      },
+      {
+        id: 203,
+        image: '/images/795_mo_1.png',
+        title: '2024 올해의 이랜서 어워즈 수상자 발표 🏆',
+      },
+      {
+        id: 204,
+        image: '/images/792_mo_7.png',
+        title: '[마감] 달리고 싶은 IT 인들 모여라! 이랜서 런클럽 ERC 4기 모집',
+      },
+    ],
+    3: [
+      {
+        id: 301,
+        image: '/images/hq720.jpg',
+        title:
+          '[초보 러너를 위한 러닝 QnA] 완주를 위한 러닝 페이스 설정법 🕒 #ERC #이랜서런클럽 #박유진코치',
+      },
+      {
+        id: 302,
+        image: '/images/hq729.jpg',
+        title:
+          '노트북 하나로 일하고 여행한다 💻 | 일하며 떠도는 디지털 노마드 리얼 라이프',
+      },
+      {
+        id: 303,
+        image: '/images/hq730.jpg',
+        title:
+          '러닝 크루의 루프탑 PARTY 🎉 (여기에 눈물 한 방울이 첨가된 😭) #이랜서런클럽 #ERC #아너스파티',
+      },
+      {
+        id: 304,
+        image: '/images/hq731.jpg',
+        title: '초보 러너라면 무조건 바로 시청하세요. 안 보면 오래 못 뜁니다!',
+      },
+    ],
+  };
 
   return (
     <div className="flex max-w-[1200px] my-[136px]  items-start gap-[56px] max-md:px-[20px] max-sm:px-[20px] max-sm:flex-col max-sm:gap-[24px] max-sm:w-full max-sm:mt-[68px] max-sm:mb-[68px] mx-auto">
@@ -73,105 +165,40 @@ export default function News() {
       </div>
       <div className="w-[704px] h-auto max-sm:w-full max-sm:h-[309px]">
         <div className="grid grid-cols-2 gap-[16px] max-sm:flex max-sm:overflow-x-auto max-sm:gap-[12px]">
-          <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
-              <img
-                src="/images/863_mo_1.jpg"
-                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
-              />
-              <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
-                <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
-                  [스탠포드 황승진 교수님 칼럼] AI의 문제, 실리콘밸리는 어떤
-                  아려움을 겪고 있을까
-                </p>
-                <p className="h-[49px] text-[rgb(119,122,131)] line-clamp-2 text-ellipsis text-[14px] font-normal leading-[22px] max-sm:h-[40px] max-sm:text-[13px]">
-                  AI의 학습 속도는 인간의 통제를 뛰어넘고 있습니다. 뛰어난 학습
-                  능력을 바탕으로 한 악용 사례도 꾸준히 발생하고 있는데요.인류는
-                  오래전부터 영화와 소설을 통해 AI가 인간을 위협하는 모습을
-                  그려오며, 그 위험성을 경고해왔습니다.이러한 상상은 단순한
-                  일자리 대체를 넘어, 훨씬 더 심각하고 복잡한 문제로 다뤄지고
-                  있는데요.그렇다면 AI가 초래하는 위험들은 어떤 모습으로
-                  그려지고 있을까요?한국인 최초 스탠포드 종신 교수이자
-                  현재스탠포드 경영 대학원 명예교수인황승진 교수님의 칼럼을
-                  통해실리콘밸리에서 발생하는 AI 악용 사례와 AI의 어두
-                </p>
+          {cardData[activeButton].map((card) => (
+            <Link href={`/blog/details/${card.id}`} key={card.id}>
+              <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
+                <img
+                  src={card.image}
+                  className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
+                />
+                <div
+                  className={`flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]
+                    ${
+                      activeButton === 3
+                        ? 'bg-[#1b1c1e]'
+                        : 'bg-[rgb(255,255,255)]'
+                    }`}
+                >
+                  <p
+                    className={`h-[60px] overflow-hidden line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]
+                    ${
+                      activeButton === 3
+                        ? 'text-[#f3f4f6]'
+                        : 'text-[rgb(42,43,46)]'
+                    }`}
+                  >
+                    {card.title}
+                  </p>
+                  {card.summary && (
+                    <p className="h-[49px] text-[rgb(119,122,131)] line-clamp-2 text-ellipsis text-[14px] font-normal leading-[22px] max-sm:h-[40px] max-sm:text-[13px]">
+                      {card.summary}
+                    </p>
+                  )}
+                </div>
               </div>
-            </div>
-          </Link>
-          <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
-              <img
-                src="/images/860_mo_1.jpg"
-                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
-              />
-              <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
-                <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
-                  [스탠포드 황승진 교수님 칼럼] 멀티 에이전트 LLM이 만드는
-                  글로벌 물류의 변화
-                </p>
-                <p className="h-[49px] text-[rgb(119,122,131)] line-clamp-2 text-ellipsis text-[14px] font-normal leading-[22px] max-sm:h-[40px] max-sm:text-[13px]">
-                  수천억 개에 달하는 파라미터를 바탕으로 비즈니스 판도를 바꾼
-                  LLM.이제 LLM을 어떻게 활용하느냐에 따라 기업의 업무 효율이
-                  크게 달라지고 있습니다.실리콘밸리 기업들은 단일 LLM 모델을
-                  넘어서여러 개의 LLM 모델을 함께 사용하며, 혁신적인 멀티
-                  에이전트 LLM 시대를 열어가고 있는데요.복잡한 문제일수록멀티
-                  에이전트 LLM을 활용해 글로벌 물류의 새로운 지평을 넓혀가는
-                  실리콘밸리의 모습을,한국인 최초 스탠포드 종신 교수이자
-                  현재스탠포드 경영 대학원 명예교수인황승진 교수님의 칼럼을 통해
-                  소개해 드립니다.글로벌 물류와 멀티 에이전트
-                </p>
-              </div>
-            </div>
-          </Link>
-          <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
-              <img
-                src="/images/858_mo_1.jpg"
-                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300s"
-              />
-              <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
-                <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
-                  [스탠포드 황승진 교수님 칼럼] AI는 어떻게 한국의 60배에 달하는
-                  아마존 산림을 보호할까
-                </p>
-                <p className="h-[49px] text-[rgb(119,122,131)] line-clamp-2 text-ellipsis text-[14px] font-normal leading-[22px] max-sm:h-[40px] max-sm:text-[13px]">
-                  지속가능성이 중요한 사회적 화두로 자리
-                  잡으면서,ESG(환경·사회·지배구조) 경영의 중요성도 점점 커지고
-                  있습니다.그중에서도‘환경보호’는 더 이상 미룰 수 없는 과제로
-                  주목받고 있죠.많은 선진 기업들이 환경 보호에 앞장서며, 경영
-                  전반에 ESG 원칙을 적극 반영하고 있습니다. 이 과정에서AI의
-                  역할도 점점 더 커지고 있는데요.데이터를 스스로 분석하고 해답을
-                  도출하는AI 기술이 환경 보호에 어떻게 활용되고 있을까요?한국인
-                  최초의스탠퍼드 종신 교수이자, 현재스탠퍼드 경영 대학원
-                  명예교수로 활동 중인황승진 교수님의 칼럼을 통해, AI가
-                </p>
-              </div>
-            </div>
-          </Link>
-          <Link href="/blog/details/:id">
-            <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] bg-[rgb(255,255,255)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
-              <img
-                src="/images/857_mo_1.jpg"
-                className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
-              />
-              <div className="flex pt-[24px] px-[24px] pb-[32px] flex-col items-start gap-[12px] bg-[rgb(255,255,255)] max-sm:pt-[16px] max-sm:px-[16px] max-sm:pb-[24px]">
-                <p className="h-[60px] overflow-hidden text-[rgb(42,43,46)] line-clamp-2 text-ellipsis text-[20px] font-bold max-sm:h-[48px] max-sm:text-[16px]">
-                  마블 영화에 숨은 SF 소설의 스토리들
-                </p>
-                <p className="h-[49px] text-[rgb(119,122,131)] line-clamp-2 text-ellipsis text-[14px] font-normal leading-[22px] max-sm:h-[40px] max-sm:text-[13px]">
-                  슈퍼히어로가 과학소설에서 빌려온 아이디어들마블 시네마틱
-                  유니버스(MCU)는 전 세계적으로 큰 인기를 끌고 있는 프랜차이즈
-                  영화다. 얼마나 좋아했던지 여러 번 보았다. 그래도 전혀 물리지
-                  않은 이유는 그 안에 있는 철학이 수많은 소설가들이 밤을 새우며
-                  완성한 것들이기 때문이다.즉 이 시리즈가 단지 액션과 히어로물에
-                  그치는 것이 아니다. 많은 작품들 속에는 20세기 소설 SF 소설에서
-                  다뤘던 주제와 아이디어가 자연스럽게 녹아들어 있다. 이 글에서는
-                  마블 영화 속 장면들을 중심으로, 어떤 SF 소설들의 철학과 설정이
-                  차용되었는지를 살펴본
-                </p>
-              </div>
-            </div>
-          </Link>
+            </Link>
+          ))}
         </div>
       </div>
       <div className="hidden max-sm:block w-full">
