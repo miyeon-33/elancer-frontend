@@ -43,9 +43,9 @@ export default function Project({
   sortBy,
   onSortChange,
 }: ProjectProps) {
-  const [_categories, setCategories] = useState<Category[]>([]);
+  const [, setCategories] = useState<Category[]>([]);
 
-  const [_selectedSort, setSelectedSort] = useState('latest');
+  const [, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
 
   // 카테고리 데이터 가져오기
