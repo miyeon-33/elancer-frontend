@@ -35,7 +35,7 @@ const projectImages = [
 
 export default function Pick() {
   const [javaProjects, setJavaProjects] = useState<Project[]>([]);
-  // 서버 데이터 요청
+
   const { data } = useQuery({
     queryKey: ['projects-java'],
     queryFn: async () => {
