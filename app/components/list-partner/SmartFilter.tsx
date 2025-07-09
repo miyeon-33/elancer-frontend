@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 type Technology = {
   technology_id: number;
   technology_name: string;
-  detail_name: string[];
+  detail_name: string | string[];
 };
 
 type SmartFilterProps = {
@@ -88,7 +88,7 @@ export default function SmartFilter({
   });
   useEffect(() => {
     if (techData) {
-      const parsed = techData.map((tech: any) => ({
+      const parsed = techData.map((tech: Technology) => ({
         ...tech,
         detail_name:
           typeof tech.detail_name === 'string'
@@ -108,7 +108,7 @@ export default function SmartFilter({
   return (
     <div>
       {/* 스마트 필터 */}
-      <div className="w-[280px]">
+      <div className="w-[280px] block max-sm:hidden">
         <div className="flex items-center justify-between">
           <p className="text-[#f3f4f6] text-[20px] font-bold -tracking-[0.5px]">
             스마트 필터

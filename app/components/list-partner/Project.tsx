@@ -66,7 +66,7 @@ export default function Project({
   return (
     <div className="flex flex-1 flex-col items-start gap-[16px]">
       {/* 모든 프로젝트 */}
-      <div className="flex w-full flex-col items-start gap-[24px]">
+      <div className="flex w-full flex-col items-start gap-[24px] max-sm:py-[16px] max-sm:px-[20px] max-sm:gap-[16px]">
         <h2 className="flex items-start">
           <span className="text-[18px] font-bold text-[#ff6948]">
             {totalCount}
@@ -76,11 +76,11 @@ export default function Project({
           </span>
         </h2>
         <div className="flex w-full justify-between">
-          <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px]">
+          <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px] max-sm:p-[3px] max-sm:gap-[4px]">
             <button
               type="button"
               onClick={() => onSortChange('latest')}
-              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
+              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] max-sm:px-[8px] ${
                 sortBy === 'latest' ? 'bg-[#38383d] ' : ''
               }`}
             >
@@ -96,7 +96,7 @@ export default function Project({
             <button
               type="button"
               onClick={() => setSelectedSort('startDate')}
-              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
+              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] max-sm:px-[8px] ${
                 sortBy === 'startDate' ? 'bg-[#38383d]' : ''
               }`}
             >
@@ -114,7 +114,7 @@ export default function Project({
               onClick={() => {
                 onSortChange('deadline');
               }}
-              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] ${
+              className={`flex h-[32px] px-[12px] justify-center items-center gap-[1px] rounded-[4px] max-sm:px-[8px] ${
                 sortBy === 'deadline' ? 'bg-[#38383d]' : ''
               }`}
             >
@@ -128,7 +128,7 @@ export default function Project({
             </button>
           </div>
           <div
-            className="flex items-center py-[6px] px-[12px] gap-[6px] cursor-pointer"
+            className="flex items-center py-[6px] px-[12px] gap-[6px] cursor-pointer max-sm:hidden"
             onClick={() => setIsActive(!isActive)}
           >
             <img

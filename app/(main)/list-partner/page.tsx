@@ -1,5 +1,3 @@
-import Category from '@/app/components/list-partner/Category';
-import Project from '@/app/components/list-partner/Project';
 import ProjectWrap from '@/app/components/list-partner/ProjectWrap';
 import SubIntroduce from '@/app/components/list-partner/SubIntroduce';
 

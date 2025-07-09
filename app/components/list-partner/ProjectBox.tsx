@@ -6,6 +6,10 @@ import SmartFilter from '@/app/components/list-partner/SmartFilter';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
+type ProjectBoxProps = {
+  selectedCategoryId: number | null;
+};
+
 type Project = {
   project_id: number;
   title: string;
@@ -23,7 +27,7 @@ type Project = {
 
 type SortOption = 'latest' | 'deadline' | 'startDate';
 
-export default function ProjectBox() {
+export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
   const [count, setCount] = useState(1); // 더보기 클릭 횟수
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]); // 상세기술 키워드
   const [selectedProficiencies, setSelectedProficiencies] = useState<string[]>(
@@ -68,6 +72,7 @@ export default function ProjectBox() {
       selectedProficiencies,
       selectedDurations,
       selectedLocation,
+      selectedCategoryId,
     ],
     queryFn: async () => {
       const hasFilter =
@@ -76,25 +81,28 @@ export default function ProjectBox() {
         selectedDurations.length > 0 ||
         !!selectedLocation;
 
-      const endpoint = hasFilter
-        ? 'http://localhost:3001/project/by-keyword'
-        : 'http://localhost:3001/project/all';
+      let endpoint = '';
+      let options: RequestInit | undefined = undefined;
 
-      const options = hasFilter
-        ? {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              keywords: selectedDetails,
-              proficiencies: selectedProficiencies,
-              durations: selectedDurations,
-              locations: selectedLocation ? [selectedLocation] : [],
-            }),
-          }
-        : undefined;
+      if (selectedCategoryId !== null) {
+        endpoint = `http://localhost:3001/project/category/${selectedCategoryId}`;
+      } else if (hasFilter) {
+        endpoint = 'http://localhost:3001/project/by-keyword';
+        options = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            keywords: selectedDetails,
+            proficiencies: selectedProficiencies,
+            durations: selectedDurations,
+            locations: selectedLocation ? [selectedLocation] : [],
+          }),
+        };
+      } else {
+        endpoint = 'http://localhost:3001/project/all';
+      }
 
       const res = await fetch(endpoint, options);
-
       if (!res.ok) throw new Error('프로젝트 데이터 요청 실패');
       return res.json();
     },
@@ -128,10 +136,10 @@ export default function ProjectBox() {
   const handleLoadMore = () => setCount((prev) => prev + 1);
 
   return (
-    <div className="max-w-[1200px] mx-auto max-md:px-[20px] max-sm:p-0 pb-[40px]">
-      <div className="p-[24px] bg-[rgb(42,43,46)] rounded-[16px] max-sm:p-[16px] max-sm:rounded-none">
+    <div className="max-w-[1200px] mx-auto max-sm:p-0 pb-[40px]">
+      <div className="p-[24px] bg-[rgb(42,43,46)] rounded-[16px] max-sm:rounded-none max-sm:p-0">
         <Search onSearch={(keyword) => setSearchKeyword(keyword)} />
-        <div className="flex gap-[80px] my-[56px]">
+        <div className="flex gap-[80px] my-[56px] max-sm:my-0 max-sm:block">
           <SmartFilter
             onSelectDetail={handleDetailFilter}
             selectedProficiencies={selectedProficiencies}

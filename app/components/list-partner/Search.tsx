@@ -1,14 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-
 type SearchProps = {
   onSearch: (keyword: string) => void;
 };
 
 export default function Search({ onSearch }: SearchProps) {
   return (
-    <div className="max-w-[1200px] mx-auto">
+    <div className="max-w-[1200px] mx-auto p-[16px]">
       {/* 검색창 */}
       <div className="w-full relative">
         <div className="absolute left-[16px] top-1/2 -translate-y-1/2 h-[20px]">
