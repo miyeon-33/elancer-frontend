@@ -122,9 +122,9 @@ export default function Platform() {
             </div>
           </div>
         </div>
-        <div className="flex rounded-[24px] max-sm:grid max-sm:grid-cols-2 max-sm:gap-[32px]">
+        <div className="flex rounded-[24px] max-sm:grid max-sm:grid-cols-2 max-sm:gap-[32px] w-full">
           {/* 누적 거래 금액 */}
-          <div className="flex flex-col px-[64px] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
+          <div className="flex flex-col justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px] w-[25%]">
             <div className="flex gap-[2px] justify-center items-center max-sm:h-[64px]">
               <div className="flex gap-[2px] justify-center items-center">
                 <h2 className="font-bold text-[68px] text-[#1b1c1e] max-sm:text-[40px]">
@@ -143,7 +143,7 @@ export default function Platform() {
             </h2>
           </div>
           {/* 보유 인력 풀 */}
-          <div className="flex flex-col px-[64px] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
+          <div className="flex flex-col w-[25%] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
             <div className="flex gap-[2px] justify-center items-center max-sm:h-[64px]">
               <div className="flex gap-[2px] justify-center items-center">
                 <h2 className="font-bold text-[68px] text-[#1b1c1e] max-sm:text-[40px]">
@@ -162,7 +162,7 @@ export default function Platform() {
             </h2>
           </div>
           {/* 프로젝트 재의뢰율 */}
-          <div className="flex flex-col px-[64px] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
+          <div className="flex flex-col w-[25%] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
             <div className="flex gap-[2px] justify-center items-center max-sm:h-[64px]">
               <div className="flex gap-[2px] justify-center items-center">
                 <h2 className="font-bold text-[68px] text-[#1b1c1e] max-sm:text-[40px]">
@@ -178,7 +178,7 @@ export default function Platform() {
             </h2>
           </div>
           {/* 프로젝트 수행완료 */}
-          <div className="flex flex-col px-[64px] justify-center items-center border-r border-[#dedfe7] w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
+          <div className="flex flex-col w-[25%] justify-center items-center border-r border-[#dedfe7] max-w-[282px] max-sm:px-0 max-sm:border-0 max-sm:w-[131px]">
             <div className="flex gap-[2px] justify-center items-center max-sm:h-[64px]">
               <div className="flex gap-[2px] justify-center items-center">
                 <h2 className="font-bold text-[68px] text-[#1b1c1e] max-sm:text-[40px]">

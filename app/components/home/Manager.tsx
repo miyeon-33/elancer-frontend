@@ -107,7 +107,7 @@ export default function Manager() {
             </button>
           </div>
         </div>
-        <div className="flex items-start gap-[32px] self-stretch max-sm:flex-col">
+        <div className="flex items-start gap-[32px] self-stretch max-sm:flex-col max-w-[1200px]">
           {/* 왼쪽번호 */}
           <div className="w-[274px] flex flex-col items-start max-sm:w-full max-sm:overflow-hidden max-sm:flex-row max-sm:gap-[8px] max-sm:px-[20px] max-sm:max-w-full max-md:w-[274px]">
             {steps.map(({ number, title, step }) => (
@@ -179,8 +179,8 @@ export default function Manager() {
             ))}
           </div>
           {/* 오른쪽 박스 */}
-          <div className="w-[894px] flex pt-[56px] px-[40px] pb-[88px] items-start gap-[40px] rounded-[24px] bg-[rgb(255,255,255)] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] max-sm:h-auto max-sm:gap-[20px] max-sm:py-[32px] max-sm:px-[20px] max-sm:items-center max-sm:flex-col max-sm:w-full">
-            <div className="w-[500px] flex h-auto flex-col items-start gap-[32px] max-sm:w-full max-sm:gap-[20px]">
+          <div className="flex pt-[56px] px-[40px] pb-[88px] items-start gap-[40px] rounded-[24px] bg-[rgb(255,255,255)] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] max-sm:h-auto max-sm:gap-[20px] max-sm:py-[32px] max-sm:px-[20px] max-sm:items-center max-sm:flex-col max-sm:w-full">
+            <div className="flex h-auto flex-col items-start gap-[32px] max-sm:w-full max-sm:gap-[20px]">
               <div className="flex flex-col items-start gap-[16px] self-stretch">
                 <div className="flex py-[3px] pr-[12px] pl-[8px] justify-center items-center gap-[8px] rounded-[4px] bg-[rgb(255,227,221)] text-[14px] font-semibold text-[rgb(255,105,72)] max-sm:py-[2px] max-sm:pr-[8px] max-sm:pl-[6px] max-sm:text-[13px]">
                   {content.label}

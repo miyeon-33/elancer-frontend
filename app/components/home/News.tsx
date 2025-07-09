@@ -106,8 +106,8 @@ export default function News() {
 
   return (
     <div className="flex max-w-[1200px] my-[136px]  items-start gap-[56px] max-md:px-[20px] max-sm:px-[20px] max-sm:flex-col max-sm:gap-[24px] max-sm:w-full max-sm:mt-[68px] max-sm:mb-[68px] mx-auto">
-      <div className="flex w-[440px] flex-col items-start gap-[32px] max-sm:gap-[24px]  max-sm:w-full">
-        <div className="flex w-[440px] flex-col items-start gap-[16px] max-sm:w-full max-sm:gap-[4px]">
+      <div className="flex flex-col items-start gap-[32px] max-sm:gap-[24px]  max-sm:w-full">
+        <div className="flex flex-col items-start gap-[16px] max-sm:w-full max-sm:gap-[4px]">
           <h2 className="text-[#1b1c1e] text-[32px] font-bold max-sm:text-[20px]">
             이랜서에서 들려주는
             <br />
@@ -167,7 +167,7 @@ export default function News() {
         <div className="grid grid-cols-2 gap-[16px] max-sm:flex max-sm:overflow-x-auto max-sm:gap-[12px]">
           {cardData[activeButton].map((card) => (
             <Link href={`/blog/details/${card.id}`} key={card.id}>
-              <div className="flex w-[340px] h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
+              <div className="flex h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
                 <img
                   src={card.image}
                   className="w-full h-[199px] object-cover hover:scale-110 transition-all duration-300"
