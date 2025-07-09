@@ -31,7 +31,7 @@ export default function Suggestion() {
   const { data } = useQuery({
     queryKey: ['category'],
     queryFn: async () => {
-      const res = await fetch(`h${process.env.NEXT_PUBLIC_API_URL}/category`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/category`);
 
       if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
 

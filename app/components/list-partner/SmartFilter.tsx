@@ -76,7 +76,6 @@ export default function SmartFilter({
     '제주',
   ];
 
-  // 기술데이터 가져오기
   const { data: techData } = useQuery<Technology[]>({
     queryKey: ['technologies'],
     queryFn: async () => {
