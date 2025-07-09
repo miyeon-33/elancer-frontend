@@ -39,7 +39,9 @@ export default function Pick() {
   const { data } = useQuery({
     queryKey: ['projects-java'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:3001/project/java');
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/project/java`
+      );
 
       if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
 

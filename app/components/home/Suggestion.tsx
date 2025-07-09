@@ -50,7 +50,7 @@ export default function Suggestion() {
   const { data: allData } = useQuery({
     queryKey: ['projects-all'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:3001/project/all');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/project/all`);
 
       if (!res.ok) throw new Error('전체 프로젝트 요청 실패');
 
