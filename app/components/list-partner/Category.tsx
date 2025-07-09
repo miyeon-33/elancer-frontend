@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 type CategoryProps = {
   onSelectCategory: (id: number | null) => void;
   selectedCategoryId: number | null;
