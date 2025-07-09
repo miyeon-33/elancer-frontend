@@ -27,7 +27,7 @@ export default function Suggestion() {
   const [activeButton, setActiveButton] = useState('개발');
   const [category, setCategory] = useState<Category[]>([]);
 
-  // 카테고리 데이터 가져오기
+  // 카테고리 데이터 가져오
   const { data } = useQuery({
     queryKey: ['category'],
     queryFn: async () => {
