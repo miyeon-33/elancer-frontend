@@ -80,7 +80,7 @@ export default function SmartFilter({
   const { data: techData } = useQuery<Technology[]>({
     queryKey: ['technologies'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:3001/technology');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/technology`);
       if (!res.ok) throw new Error('기술 데이터 요청 실패');
       const raw = await res.json();
       return raw;

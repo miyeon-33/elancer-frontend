@@ -85,9 +85,9 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
       let options: RequestInit | undefined = undefined;
 
       if (selectedCategoryId !== null) {
-        endpoint = `http://localhost:3001/project/category/${selectedCategoryId}`;
+        endpoint = `${process.env.NEXT_PUBLIC_API_URL}/project/category/${selectedCategoryId}`;
       } else if (hasFilter) {
-        endpoint = 'http://localhost:3001/project/by-keyword';
+        endpoint = `${process.env.NEXT_PUBLIC_API_URL}/project/by-keyword`;
         options = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -99,7 +99,7 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
           }),
         };
       } else {
-        endpoint = 'http://localhost:3001/project/all';
+        endpoint = `${process.env.NEXT_PUBLIC_API_URL}/project/all`;
       }
 
       const res = await fetch(endpoint, options);
