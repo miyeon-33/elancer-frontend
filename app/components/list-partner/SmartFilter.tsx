@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 type Technology = {
   technology_id: number;
   technology_name: string;
-  detail_name: string | string[];
+  detail_name: string[];
 };
 
 type SmartFilterProps = {
@@ -91,9 +91,7 @@ export default function SmartFilter({
       const parsed = techData.map((tech: Technology) => ({
         ...tech,
         detail_name:
-          typeof tech.detail_name === 'string'
-            ? tech.detail_name.split(',')
-            : [],
+          typeof tech.detail_name === 'string' ? tech.detail_name : [],
       }));
       setTechnologies(parsed);
     }
