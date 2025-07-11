@@ -30,7 +30,7 @@ export default function SubIntroduce() {
           </div>
           <div className="flex items-center max-sm:gap-[2px] border-b border-[#ffffff66]">
             <Link
-              href="/login"
+              href="#"
               className="flex justify-center items-center shrink-0 h-[20px]"
             >
               <span className="text-[#fff] text-[16px] font-bold -tracking-[0.5px] max-sm:text-[13px] max-sm:leading-[20px] max-sm:mr-[2px]">
