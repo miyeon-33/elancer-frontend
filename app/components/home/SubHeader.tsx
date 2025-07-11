@@ -30,10 +30,7 @@ export default function SubHeader() {
                     이랜서의 다양한 프로젝트를 만나보세요.
                   </p>
                 </div>
-                <Link
-                  href="/signup"
-                  className="flex justify-start items-center"
-                >
+                <Link href="#" className="flex justify-start items-center">
                   <span className="text-[#1b1c1e] text-[12px] font-normal">
                     회원가입
                   </span>
@@ -91,7 +88,7 @@ export default function SubHeader() {
                 <div className="h-[1px] bg-[#ececf1]"></div>
                 <div className="flex flex-col items-start">
                   <p className="text-[12px] text-[#8a8a93] py-[10px]">더보기</p>
-                  <Link href="/company" className="py-[6px]">
+                  <Link href="#" className="py-[6px]">
                     <span className="text-[#777a83] text-[15px] font-semibold hover:text-[#ff6948]">
                       회사소개
                     </span>
@@ -101,7 +98,7 @@ export default function SubHeader() {
                       이용안내
                     </span>
                   </Link>
-                  <Link href="/howtouse-service" className="py-[6px]">
+                  <Link href="#" className="py-[6px]">
                     <span className="text-[#777a83] text-[15px] font-semibold hover:text-[#ff6948]">
                       FAQ
                     </span>
@@ -428,7 +425,7 @@ export default function SubHeader() {
               <p className="text-[#38383d] text-[13px] font-semibold">로그인</p>
             </Link>
             <Link
-              href="/signup"
+              href="#"
               className="flex h-[36px] px-[24px] justify-center items-center gap-[8px] rounded-[24px] bg-[#ff6948]"
             >
               <p className="text-[#fff] text-[13px] font-semibold">회원가입</p>

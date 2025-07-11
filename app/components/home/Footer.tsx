@@ -57,7 +57,7 @@ export default function Footer() {
               Global Blog
             </Link>
             <Link
-              href="/howtouse-service"
+              href="#"
               className="text-[#2a2b2e] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#e1e4ea] max-sm:text-[#38383d] max-sm:text-[12px]"
             >
               <img
@@ -69,19 +69,19 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-[16px] max-sm:hidden">
             <Link
-              href="/company"
+              href="#"
               className="text-[#636773] text-[13px] font-semibold -tracking-[0.5px]"
             >
               회사소개
             </Link>
             <Link
-              href="/terms"
+              href="#"
               className="text-[#636773] text-[13px] font-semibold -tracking-[0.5px]"
             >
               이용약관
             </Link>
             <Link
-              href="/policy"
+              href="#"
               className="text-[#636773] text-[13px] font-semibold -tracking-[0.5px]"
             >
               개인정보처리방침
@@ -187,24 +187,15 @@ export default function Footer() {
           </div>
         </div>
         <div className="hidden max-sm:flex max-sm:justify-center max-sm:items-center max-sm:gap-[12px] max-sm:self-stretch">
-          <Link
-            href="/company"
-            className="text-[#636773] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#636773] text-[13px] font-semibold">
             회사소개
           </Link>
           <div className="w-[1px] h-[12px] bg-[#dedfe7]"></div>
-          <Link
-            href="/terms"
-            className="text-[#636773] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#636773] text-[13px] font-semibold">
             이용약관
           </Link>
           <div className="w-[1px] h-[12px] bg-[#dedfe7]"></div>
-          <Link
-            href="/policy"
-            className="text-[#636773] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#636773] text-[13px] font-semibold">
             개인정보처리방침
           </Link>
         </div>

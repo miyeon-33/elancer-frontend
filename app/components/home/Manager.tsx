@@ -109,14 +109,14 @@ export default function Manager() {
         </div>
         <div className="flex items-start gap-[32px] self-stretch max-sm:flex-col max-w-[1200px]">
           {/* 왼쪽번호 */}
-          <div className="w-[274px] flex flex-col items-start max-sm:w-full max-sm:overflow-hidden max-sm:flex-row max-sm:gap-[8px] max-sm:px-[20px] max-sm:max-w-full max-md:w-[274px]">
+          <div className="w-[274px] flex flex-col items-start max-sm:w-full max-sm:overflow-x-auto max-sm:flex-row max-sm:gap-[8px] max-sm:px-[20px] max-sm:max-w-full max-md:w-[274px]">
             {steps.map(({ number, title, step }) => (
               <div
                 key={number}
                 onClick={() => setActiveStep(number)}
                 className="cursor-pointer w-full"
               >
-                <h3 className="flex items-center gap-[8px] bg-none text-left max-sm:h-[96px] max-sm:flex-col max-sm:items-start">
+                <h3 className="flex items-center gap-[8px] bg-none text-left max-sm:flex-col max-sm:items-start">
                   <div className="flex justify-center items-center gap-[8px]">
                     <div className="w-[40px] h-[40px] flex gap-[8px]">
                       <div className="w-[38px] h-[38px] relative">

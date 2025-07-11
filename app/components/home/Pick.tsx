@@ -56,10 +56,10 @@ export default function Pick() {
   }, [data]);
 
   return (
-    <div className="max-w-[1200px] max-md:px-[20px] max-sm:px-[20px] max-sm:max-w-[768px] max-sm:min-w-[375px] mx-auto">
+    <div className="max-w-[1200px] max-md:px-[20px] max-sm:px-[20px] max-sm:max-w-[768px] mx-auto">
       <div className="flex flex-col items-start gap-[32px] rounded-[24px] bg-[#fff] shadow-[0px_0px_32px_0px_rgba(0,0,0,0.06)] mb-[80px] pt-[56px] px-[56px] max-sm:pt-[32px] max-sm:px-[20px] max-sm:pb-[20px]">
         <div className="flex items-start gap-[32px] w-full max-w-[1200px] overflow-hidden relative max-sm:flex-col">
-          <div className="flex w-[312px] flex-col items-start self-stretch justify-between max-sm:w-full">
+          <div className="flex flex-col items-start self-stretch justify-between">
             <div className="gap-[16px] flex flex-col max-sm:gap-[6px] max-sm:items-start">
               <h2 className="self-stretch text-[#1b1c1e] text-[32px] font-bold inline-block max-sm:text-[20px]">
                 이랜서&nbsp;
@@ -75,7 +75,7 @@ export default function Pick() {
           </div>
           <div className="w-[744px] overflow-hidden">
             <Swiper
-              slidesPerView={2}
+              slidesPerView="auto"
               navigation
               modules={[Navigation]}
               className={styles.pickslider}
@@ -87,7 +87,7 @@ export default function Pick() {
               }}
             >
               {javaProjects.slice(0, 6).map((project, index) => (
-                <SwiperSlide className="w-[312px]" key={project.project_id}>
+                <SwiperSlide key={project.project_id}>
                   <div className="h-[435px] flex flex-col items-center bg-[#fff] rounded-[12px] p-[24px] gap-[12px] border border-[#dedfe7] hover:border-[#ff9148] transition-all duration-300 max-sm:w-[264px] max-sm:h-[384px] max-sm:p-[16px]">
                     <div className="flex justify-between items-start w-full">
                       <div className="flex justify-center items-center rounded-[2px] py-[4px] px-[8px] bg-[#f44343] font-normal text-[#fff] text-[13px] whitespace-nowrap">
