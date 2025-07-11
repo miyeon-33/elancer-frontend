@@ -156,38 +156,46 @@ export default function Project({
           projects.map((project) => (
             <div
               key={project.project_id}
-              className="flex flex-col items-center gap-[16px] self-stretch mb-[34px]"
+              className="flex flex-col items-center gap-[16px] self-stretch mb-[32px]"
             >
-              <div className="flex bg-[#fff] rounded-[12px] p-[24px] gap-[40px] border-2 border-[#ececf1] w-full hover:border-[#ff9148]">
-                <div className="flex flex-col gap-[16px] w-full">
-                  <div className="flex items-center h-[22px] gap-[8px]">
-                    <div className="flex items-center gap-[2px]">
-                      <img src="images/icons/adress-icon.27b99aa2(1).svg" />
-                      <p className="text-[#38383d] text-[13px] font-semibold">
-                        {project.location}
-                      </p>
+              <div className="flex bg-[#fff] rounded-[12px] p-[24px] gap-[40px] border-2 border-[#ececf1] w-full hover:border-[#ff9148] max-sm:p-[16px] max-sm:flex-col max-sm:gap-[8px]">
+                <div className="flex flex-col gap-[16px] w-full max-sm:gap-[8px]">
+                  <div className="flex justify-between">
+                    <div className="flex items-center h-[22px] gap-[8px]">
+                      <div className="flex items-center gap-[2px]">
+                        <img
+                          src="images/icons/adress-icon.27b99aa2(1).svg"
+                          className="max-sm:w-[24px] max-sm:h-auto"
+                        />
+                        <p className="text-[#38383d] text-[13px] font-semibold break-keep">
+                          {project.location}
+                        </p>
+                      </div>
+                      <div className="w-[1px] h-[16px] bg-[#ececf1]"></div>
+                      <div className="flex items-center break-keep">
+                        <p className="text-[#007cfb] text-[14px] font-bold">
+                          {project.current_members}
+                        </p>
+                        <p className="text-[#777a83] text-[13px] font-normal break-keep">
+                          명 참여중
+                        </p>
+                      </div>
                     </div>
-                    <div className="w-[1px] h-[16px] bg-[#ececf1]"></div>
-                    <div className="flex items-center">
-                      <p className="text-[#007cfb] text-[14px] font-bold">
-                        {project.current_members}
-                      </p>
-                      <p className="text-[#777a83] text-[13px] font-normal">
-                        명 참여중
-                      </p>
+                    <div className="hidden max-sm:block">
+                      <div className="flex justify-end h-[24px] gap-[2px]">
+                        <img src="/images/icons/heart-empty.5ce7692c(1).svg" />
+                        <p className="text-[#1b1c1e] text-[16px] font-semibold">
+                          {project.likes}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="h-auto text-[22px] font-bold overflow-hidden text-ellipsis line-clamp-2 break-words text-[#000] -tracking-[0.75px]">
+                  <div className="h-auto text-[22px] font-bold overflow-hidden text-ellipsis line-clamp-2 break-words text-[#000] -tracking-[0.75px] max-sm:text-[18px] max-sm:w-full">
                     {project.title}
                   </div>
-                  <div className="flex gap-[8px]">
-                    <p className="h-[22px] text-[#ff6948] font-semibold text-[14px] whitespace-nowrap">
-                      {project.category_name}
-                    </p>
-                  </div>
                 </div>
-                <div className="flex flex-col gap-[16px] min-w-[147px]">
-                  <div className="flex justify-end h-[24px] gap-[2px]">
+                <div className="flex flex-col gap-[16px] min-w-[147px] max-sm:gap-[8px] max-sm:w-full">
+                  <div className="flex justify-end h-[24px] gap-[2px] max-sm:hidden">
                     <img src="/images/icons/heart-empty.5ce7692c(1).svg" />
                     <p className="text-[#1b1c1e] text-[16px] font-semibold">
                       {project.likes}
@@ -195,21 +203,24 @@ export default function Project({
                   </div>
                   <div className="flex flex-col gap-[2px]">
                     <div>
-                      <div className="flex justify-between">
+                      <div className="flex justify-between max-sm:justify-start max-sm:gap-[2px]">
                         <p className="text-[13px] font-normal">숙련도</p>
+                        <p className="hidden max-sm:block text-[13px]">:</p>
                         <p className="text-[13px] font-normal text-[#1b1c1e]">
                           {project.proficiency}
                         </p>
                       </div>
-                      <div className="flex justify-between">
+                      <div className="flex justify-between max-sm:justify-start max-sm:gap-[2px]">
                         <p className="text-[13px] font-normal">예상기간</p>
+                        <p className="hidden max-sm:block text-[13px]">:</p>
                         <p className="text-[13px] font-normal text-[#1b1c1e]">
                           {project.project_duration}
                         </p>
                       </div>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between max-sm:justify-start max-sm:gap-[2px]">
                       <p className="text-[13px] font-normal">월 단가</p>
+                      <p className="hidden max-sm:block text-[13px]">:</p>
                       <p className="text-[13px] font-normal text-[#1b1c1e]">
                         {project.monthly_price}
                       </p>
