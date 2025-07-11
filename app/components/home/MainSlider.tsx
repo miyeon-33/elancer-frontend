@@ -10,7 +10,7 @@ import styles from './MainSlider.module.css';
 
 export default function MainSlider() {
   return (
-    <div className="max-w-[1200px] h-[260px] rounded-[24px] mt-[32px] relative max-sm:mt-0 max-sm:pt-[20px] max-md:px-[20px] max-sm:px-[20px] mx-auto">
+    <div className="max-w-[1200px] h-[260px] rounded-[24px] relative max-sm:mt-0 max-sm:pt-[20px] max-md:px-[20px] max-sm:px-[20px] mx-auto">
       <Swiper
         slidesPerView={1}
         pagination={{

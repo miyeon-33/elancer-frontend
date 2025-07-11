@@ -10,7 +10,7 @@ import Suggestion from '@/app/components/home/Suggestion';
 
 export default function Home() {
   return (
-    <main className="mx-auto bg-[#f6f7f9]">
+    <main className="mx-auto bg-[#f6f7f9] pt-[32px]">
       <MainSlider />
       <Platform />
       <Pick />

@@ -149,7 +149,7 @@ export default function Project({
         </div>
       </div>
       {/* 데이터 렌더링 */}
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full max-md:px-[20px]">
         {projects.length === 0 ? (
           <p>조건에 맞는 프로젝트가 없습니다.</p>
         ) : (
