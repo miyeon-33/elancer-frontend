@@ -22,7 +22,7 @@ export default function MainSlider() {
         className={styles.slider}
       >
         <SwiperSlide>
-          <Link href="/community/detail/819" className="h-[25px]">
+          <Link href="#" className="h-[25px]">
             <div className="bg-[rgb(159,45,79)] w-full h-[260px] relative rounded-[24px]">
               <div className="flex flex-col items-start justify-center gap-[24px] absolute top-1/2 -translate-y-1/2 left-[120px] max-sm:pt-[24px] max-sm:pr-[30px] max-sm:pl-[24px] max-sm:left-0 max-sm:top-0 max-sm:translate-0">
                 <h1 className="font-bold text-[28px] text-[#fff] max-sm:text-[18px]">
@@ -50,7 +50,7 @@ export default function MainSlider() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="/community/detail/819" className="h-[25px]">
+          <Link href="#" className="h-[25px]">
             <div className="bg-[rgb(27,28,30)] w-full h-[260px] relative rounded-[24px] overflow-hidden">
               <div className="flex flex-col items-start justify-center gap-[24px] absolute top-1/2 -translate-y-1/2 left-[120px] max-sm:pt-[24px] max-sm:pr-[30px] max-sm:pl-[24px] max-sm:left-0 max-sm:top-0 max-sm:translate-0">
                 <h1 className="font-bold text-[28px] text-[#fff] max-sm:text-[18px]">
@@ -84,7 +84,7 @@ export default function MainSlider() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="/community/detail/819" className="h-[25px]">
+          <Link href="#" className="h-[25px]">
             <div className="bg-[rgb(37,38,137)] w-full h-[260px] relative rounded-[24px]">
               <div className="flex flex-col items-start justify-center gap-[24px] absolute top-1/2 -translate-y-1/2 left-[120px] max-sm:pt-[24px] max-sm:pr-[30px] max-sm:pl-[24px] max-sm:left-0 max-sm:top-0 max-sm:translate-0">
                 <h1 className="font-bold text-[28px] text-[#fff] max-sm:text-[18px]">
@@ -112,7 +112,7 @@ export default function MainSlider() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link href="/community/detail/819" className="h-[25px]">
+          <Link href="#" className="h-[25px]">
             <div className="bg-[rgb(1,110,84)] w-full h-[260px] relative rounded-[24px]">
               <div className="flex flex-col items-start justify-center gap-[24px] absolute top-1/2 -translate-y-1/2 left-[120px] max-sm:pt-[24px] max-sm:pr-[30px] max-sm:pl-[24px] max-sm:left-0 max-sm:top-0 max-sm:translate-0">
                 <h1 className="font-bold text-[28px] text-[#fff] max-sm:text-[18px]">

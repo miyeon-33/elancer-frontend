@@ -52,7 +52,7 @@ export default function SubHeader() {
                   </svg>
                 </Link>
                 <Link
-                  href="/elogin"
+                  href="#"
                   className="flex h-[44px] py-[16px] px-[24px] justify-center items-center gap-[6px] rounded-[6px] bg-[#fa751e]"
                 >
                   <span className="text-[#fff] text-[16px] font-bold">
@@ -61,7 +61,7 @@ export default function SubHeader() {
                 </Link>
                 <div className="flex flex-col gap-[12px]">
                   <div className="flex flex-col items-start">
-                    <Link href="/list-enterprise" className="py-[10px]">
+                    <Link href="#" className="py-[10px]">
                       <span className="text-[#1b1c1e] font-bold text-[18px]">
                         프리랜서 찾기
                       </span>
@@ -76,12 +76,12 @@ export default function SubHeader() {
                         재택 프로젝트
                       </span>
                     </Link>
-                    <Link href="/blog" className="py-[10px]">
+                    <Link href="#" className="py-[10px]">
                       <span className="text-[#1b1c1e] font-bold text-[18px]">
                         블로그
                       </span>
                     </Link>
-                    <Link href="/community" className="py-[10px]">
+                    <Link href="#" className="py-[10px]">
                       <span className="text-[#1b1c1e] font-bold text-[18px]">
                         커뮤니티
                       </span>
@@ -240,10 +240,7 @@ export default function SubHeader() {
         {/* GNB */}
         <ul className="inline-flex justify-center items-start gap-[24px] max-sm:flex max-sm:items-center max-sm:gap-[16px] max-sm:h-[55px]">
           <li className="inline-block">
-            <Link
-              href="/list-enterprise"
-              className="text-[#f3f4f6] text-[16px] font-bold"
-            >
+            <Link href="#" className="text-[#f3f4f6] text-[16px] font-bold">
               프리랜서
             </Link>
           </li>
@@ -264,7 +261,7 @@ export default function SubHeader() {
             </Link>
           </li>
           <li className="inline-block relative group">
-            <Link href="/blog" className="text-[#f3f4f6] text-[16px] font-bold">
+            <Link href="#" className="text-[#f3f4f6] text-[16px] font-bold">
               블로그
             </Link>
             <div
@@ -275,83 +272,83 @@ export default function SubHeader() {
               }
             >
               <Link
-                href="/blog/all"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)] hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 ALL NEW
               </Link>
               <Link
-                href="/blog/developeTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 개발테크
               </Link>
               <Link
-                href="/blog/designTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 디자인 테크
               </Link>
               <Link
-                href="/blog/prcrmtTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 구매 테크
               </Link>
               <Link
-                href="/blog/HRTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 인사 테크
               </Link>
               <Link
-                href="/blog/marketingTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 홍보 & 마케팅 테크
               </Link>
               <Link
-                href="/blog/logisticsTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 물류 테크
               </Link>
               <Link
-                href="/blog/strategyTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 전략 테크
               </Link>
               <Link
-                href="/blog/manufTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 제조 테크
               </Link>
               <Link
-                href="/blog/BlanceUp"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 Balance UP
               </Link>
               <Link
-                href="/blog/WJParkClmn"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 박우진 칼럼
               </Link>
               <Link
-                href="/blog/AIColumn"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
@@ -360,10 +357,7 @@ export default function SubHeader() {
             </div>
           </li>
           <li className="inline-block relative group">
-            <Link
-              href="/community"
-              className="text-[#f3f4f6] text-[16px] font-bold"
-            >
+            <Link href="#" className="text-[#f3f4f6] text-[16px] font-bold">
               커뮤니티
             </Link>
             <div
@@ -374,14 +368,14 @@ export default function SubHeader() {
               }
             >
               <Link
-                href="/blog/logisticsTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 이랜서 NEWS
               </Link>
               <Link
-                href="/blog/strategyTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)] break-keep
                 whitespace-nowrap flex-nowrap"
@@ -389,28 +383,28 @@ export default function SubHeader() {
                 이랜서 런클럽 (ERC)
               </Link>
               <Link
-                href="/blog/manufTech"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 이베프
               </Link>
               <Link
-                href="/blog/BlanceUp"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 언론보도
               </Link>
               <Link
-                href="/blog/WJParkClmn"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
                 이랜서 생각
               </Link>
               <Link
-                href="/blog/AIColumn"
+                href="#"
                 className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
               >
@@ -428,7 +422,7 @@ export default function SubHeader() {
           </button>
           <div className="flex items-center gap-[4px]">
             <Link
-              href="/elogin"
+              href="#"
               className="flex h-[36px] px-[24px] justify-center items-center gap-[8px] rounded-[24px] border-[#e7e7e7] bg-[#fff] border"
             >
               <p className="text-[#38383d] text-[13px] font-semibold">로그인</p>

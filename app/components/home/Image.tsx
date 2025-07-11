@@ -4,7 +4,7 @@ export default function Image() {
   return (
     <div className="max-w-[1200px] mx-auto max-md:px-[20px] max-sm:px-[20px]">
       <Link
-        href="/community/runClub"
+        href="#"
         className="rounded-[16px] pb-[120px] block max-sm:flex max-sm:justify-center max-sm:items-center max-sm:py-[68px]"
       >
         <img

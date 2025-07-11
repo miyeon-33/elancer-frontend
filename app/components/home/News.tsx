@@ -155,10 +155,7 @@ export default function News() {
             </button>
           ))}
         </div>
-        <Link
-          href="/blog"
-          className="flex items-center gap-[8px] max-sm:hidden"
-        >
+        <Link href="#" className="flex items-center gap-[8px] max-sm:hidden">
           <p className="text-[#58575e] text-[16px] font-bold">더보기</p>
           <img src="/images/icons/more-btn.cb9074fb.svg" />
         </Link>
@@ -166,7 +163,7 @@ export default function News() {
       <div className="w-[704px] h-auto max-sm:w-full max-sm:h-[309px]">
         <div className="grid grid-cols-2 gap-[16px] max-sm:flex max-sm:overflow-x-auto max-sm:gap-[12px]">
           {cardData[activeButton].map((card) => (
-            <Link href={`/blog/details/${card.id}`} key={card.id}>
+            <Link href="#" key={card.id}>
               <div className="flex h-auto flex-col items-start rounded-[12px] border border-[rgba(222,223,231)] overflow-hidden max-sm:w-[280px] max-sm:h-[309px] transition-all duration-300 hover:shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1),0px_4px_6px_-4px_rgba(0,0,0,0.1)]">
                 <img
                   src={card.image}
@@ -203,7 +200,7 @@ export default function News() {
       </div>
       <div className="hidden max-sm:block w-full">
         <Link
-          href="/blog"
+          href="#"
           className="flex items-center gap-[8px] justify-center py-[12px] border-t border-[#dedfe7] mr-[20px]"
         >
           <p className="text-[#58575e] text-[14px] font-bold leading-[22px]">

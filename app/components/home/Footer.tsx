@@ -7,7 +7,7 @@ export default function Footer() {
         <nav className="flex justify-between">
           <div className="flex items-center gap-[24px] max-sm:items-start max-sm:gap-[6px] max-sm:flex-wrap">
             <Link
-              href="/list-enterprise"
+              href="#"
               className="text-[#2a2b2e] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#e1e4ea] max-sm:text-[#38383d] max-sm:text-[12px]"
             >
               <img
@@ -27,7 +27,7 @@ export default function Footer() {
               프로젝트 보기
             </Link>
             <Link
-              href="/blog"
+              href="#"
               className="text-[#2a2b2e] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#e1e4ea] max-sm:text-[#38383d] max-sm:text-[12px]"
             >
               <img

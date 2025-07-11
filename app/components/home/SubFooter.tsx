@@ -7,7 +7,7 @@ export default function SubFooter() {
         <nav className="flex justify-between">
           <div className="flex items-center gap-[24px] max-sm:items-start max-sm:gap-[6px] max-sm:flex-wrap">
             <Link
-              href="/list-enterprise"
+              href="#"
               className="text-[#f3f4f6] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#101011] max-sm:text-[#ececf1] max-sm:text-[12px]"
             >
               <img
@@ -27,7 +27,7 @@ export default function SubFooter() {
               프로젝트 보기
             </Link>
             <Link
-              href="/blog"
+              href="#"
               className="text-[#f3f4f6] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#101011] max-sm:text-[#ececf1] max-sm:text-[12px]"
             >
               <img
@@ -57,7 +57,7 @@ export default function SubFooter() {
               Global Blog
             </Link>
             <Link
-              href="/howtouse-service"
+              href="#"
               className="text-[#f3f4f6] text-[15px] font-semibold max-sm:flex max-sm:items-center max-sm:py-[8px] max-sm:px-[16px] max-sm:gap-[4px] max-sm:rounded-[4px] max-sm:border max-sm:border-[#101011] max-sm:text-[#ececf1] max-sm:text-[12px]"
             >
               <img
@@ -69,19 +69,19 @@ export default function SubFooter() {
           </div>
           <div className="flex items-center gap-[16px] max-sm:hidden">
             <Link
-              href="/company"
+              href="#"
               className="text-[#c9c8cd] text-[13px] font-semibold -tracking-[0.5px]"
             >
               회사소개
             </Link>
             <Link
-              href="/terms"
+              href="#"
               className="text-[#c9c8cd] text-[13px] font-semibold -tracking-[0.5px]"
             >
               이용약관
             </Link>
             <Link
-              href="/policy"
+              href="#"
               className="text-[#c9c8cd] text-[13px] font-semibold -tracking-[0.5px]"
             >
               개인정보처리방침
@@ -187,24 +187,15 @@ export default function SubFooter() {
           </div>
         </div>
         <div className="hidden max-sm:flex max-sm:justify-center max-sm:items-center max-sm:gap-[12px] max-sm:self-stretch">
-          <Link
-            href="/company"
-            className="text-[#c9c8cd] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#c9c8cd] text-[13px] font-semibold">
             회사소개
           </Link>
           <div className="w-[1px] h-[12px] bg-[#101011]"></div>
-          <Link
-            href="/terms"
-            className="text-[#c9c8cd] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#c9c8cd] text-[13px] font-semibold">
             이용약관
           </Link>
           <div className="w-[1px] h-[12px] bg-[#101011]"></div>
-          <Link
-            href="/policy"
-            className="text-[#c9c8cd] text-[13px] font-semibold"
-          >
+          <Link href="#" className="text-[#c9c8cd] text-[13px] font-semibold">
             개인정보처리방침
           </Link>
         </div>
