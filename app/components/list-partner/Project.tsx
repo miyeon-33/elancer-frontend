@@ -48,6 +48,8 @@ export default function Project({
   const [, setSelectedSort] = useState('latest');
   const [isActive, setIsActive] = useState(false);
 
+  const [clicked, setClicked] = useState(false);
+
   // 카테고리 데이터 가져오기
   useEffect(() => {
     const fetchCategories = async () => {
@@ -76,7 +78,7 @@ export default function Project({
           </span>
         </h2>
         <div className="flex w-full justify-between">
-          <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px] max-sm:p-[3px] max-sm:gap-[4px]">
+          <div className="border border-[#38383d] bg-[#2a2b2e] flex p-[4px] items-center rounded-[6px] gap-[4px] max-sm:p-[3px] max-sm:gap-[3px]">
             <button
               type="button"
               onClick={() => onSortChange('latest')}
@@ -148,8 +150,27 @@ export default function Project({
           </div>
         </div>
       </div>
+      <div
+        className="hidden max-sm:flex items-center gap-[6px] cursor-pointer px-[20px] justify-end w-full"
+        onClick={() => setClicked(!clicked)}
+      >
+        <img
+          src={
+            clicked
+              ? '/images/icons/check-broken.svg'
+              : '/images/icons/check.svg'
+          }
+        />
+        <p
+          className={`text-[13px] font-normal -tracking-[0.5px] ${
+            clicked ? 'text-[#ff6948]' : 'text-[#c9c8cd]'
+          }`}
+        >
+          모집중인 프로젝트만 보기
+        </p>
+      </div>
       {/* 데이터 렌더링 */}
-      <div className="flex flex-col items-center w-full max-md:px-[20px]">
+      <div className="flex flex-col items-center w-full max-md:px-[20px] max-sm:pb-[72px]">
         {projects.length === 0 ? (
           <p>조건에 맞는 프로젝트가 없습니다.</p>
         ) : (
