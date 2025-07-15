@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function ProjectWrap() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
-    null
+    1
   );
 
   return (

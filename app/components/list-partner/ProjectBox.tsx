@@ -1,5 +1,6 @@
 'use client';
 
+import MobileSmartFilter from '@/app/components/list-partner/MobileSmartFilter';
 import Project from '@/app/components/list-partner/Project';
 import Search from '@/app/components/list-partner/Search';
 import SmartFilter from '@/app/components/list-partner/SmartFilter';
@@ -38,6 +39,8 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
 
   const [searchKeyword, setSearchKeyword] = useState(''); // 검색어 상태
   const [sortBy, setSortBy] = useState<SortOption>('latest');
+
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
 
   const handleDetailFilter = (details: string[]) => {
     setSelectedDetails(details); // 필터 키워드 설정
@@ -84,7 +87,7 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
       let endpoint = '';
       let options: RequestInit | undefined = undefined;
 
-      if (selectedCategoryId !== null) {
+      if (selectedCategoryId !== 1) {
         endpoint = `${process.env.NEXT_PUBLIC_API_URL}/project/category/${selectedCategoryId}`;
       } else if (hasFilter) {
         endpoint = `${process.env.NEXT_PUBLIC_API_URL}/project/by-keyword`;
@@ -106,6 +109,7 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
       if (!res.ok) throw new Error('프로젝트 데이터 요청 실패');
       return res.json();
     },
+    enabled: !isFilterApplied || selectedCategoryId !== null,
   });
 
   const allProjects = data?.projects || [];
@@ -126,7 +130,7 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
         new Date(b.project_duration).getTime()
       );
     } else {
-      return a.project_id - b.project_id; // ✅ 오래된 순 (project_id 낮은 게 먼저)
+      return a.project_id - b.project_id;
     }
   });
   const visibleProjects = sortedProjects.slice(0, count * 10);
@@ -160,6 +164,19 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
             onSortChange={setSortBy}
           />
         </div>
+        <MobileSmartFilter
+          selectedDetails={selectedDetails}
+          onSelectDetail={handleDetailFilter}
+          onToggleProficiency={handleToggleProficiency}
+          selectedProficiencies={selectedProficiencies}
+          onToggleDuration={toggleDuration}
+          selectedDurations={selectedDurations}
+          selectedLocation={selectedLocation}
+          onSelectedLocation={setSelectedLocation}
+          onApplyFilters={() => {
+            setIsFilterApplied(true);
+          }}
+        />
       </div>
     </div>
   );

@@ -10,11 +10,11 @@ export default function Category({
   selectedCategoryId,
 }: CategoryProps) {
   const categories = [
-    { id: null, name: '전체' },
     { id: 1, name: '개발' },
     { id: 2, name: '기획' },
     { id: 3, name: '퍼블리싱' },
     { id: 4, name: '디자인' },
+    { id: 5, name: '기타' },
   ];
 
   return (
