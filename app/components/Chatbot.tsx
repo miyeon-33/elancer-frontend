@@ -42,9 +42,8 @@ export default function Chatbot() {
       >
         챗봇
       </button>
-
       {isOpen && (
-        <div className="fixed bottom-[170px] right-[50px] max-w-[400px] h-[500px] bg-[#f5f5f5] border border-gray-300 rounded-[10px] w-full z-60">
+        <div className="fixed bottom-[160px] right-[50px] max-w-[400px] h-[500px] bg-[#f5f5f5] border border-gray-300 rounded-[10px] w-full z-60">
           <div className="overflow-auto p-[20px] h-[calc(100%-50px)] scroll-w-[5px]">
             <div className="flex items-center justify-between">
               <h2 className="text-[20px] font-bold">OpenAi 챗봇</h2>
@@ -71,7 +70,10 @@ export default function Chatbot() {
               ))}
             </div>
           </div>
-          <form className="absolute bottom-0 left-0 flex h-[50px] w-full items-center bg-[#f5f5f5] px-[20px] gap-[5px]">
+          <form
+            onSubmit={handleSubmit}
+            className="absolute bottom-0 left-0 flex h-[50px] w-full items-center bg-[#f5f5f5] px-[20px] gap-[5px]"
+          >
             <input
               className="w-full border-gray-300 rounded"
               type="text"
@@ -82,7 +84,6 @@ export default function Chatbot() {
             <button
               type="submit"
               className="btn shrink-0 leading-[38px] border-gray-300 rounded"
-              onClick={handleSubmit}
             >
               전송
             </button>
