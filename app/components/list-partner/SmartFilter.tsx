@@ -175,7 +175,7 @@ export default function SmartFilter({
                           ?.filter((tech) => tech.technology_id === clickedMenu)
                           .flatMap((tech) =>
                             Array.isArray(tech.detail_name)
-                              ? tech.detail_name.map((detail, index) => {
+                              ? tech.detail_name.map((detail) => {
                                   const isSelected =
                                     selectedDetails.includes(detail);
                                   const updated = isSelected
