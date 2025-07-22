@@ -15,7 +15,6 @@ export default function Error({
   function reload() {
     // 오류를 캐치한 후 복구해야하므로 우순순위를 낮춰 에러뒤에 실행되게함
     startTransition(() => {
-      // 새로고침
       router.refresh();
       // 초기화
       reset();
