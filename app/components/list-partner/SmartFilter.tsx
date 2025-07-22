@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 type Technology = {
   technology_id: number;
   technology_name: string;
-  detail_name: string[];
+  detail_name: string | string[];
+  category_id: number;
 };
 
 type SmartFilterProps = {
@@ -46,15 +47,6 @@ export default function SmartFilter({
   // 숙련도 추출
   const proficiencyLevels = ['초급', '중급', '고급', '무관'];
 
-  const handleDetailClick = (detail: string) => {
-    const updated = selectedDetails.includes(detail)
-      ? selectedDetails.filter((d) => d !== detail)
-      : [...selectedDetails, detail];
-
-    setSelectedDetails(updated);
-    onSelectDetail(updated);
-  };
-
   // 지역
   const locations = [
     '서울',
@@ -90,7 +82,9 @@ export default function SmartFilter({
       const parsed = techData.map((tech: Technology) => ({
         ...tech,
         detail_name:
-          typeof tech.detail_name === 'string' ? tech.detail_name : [],
+          typeof tech.detail_name === 'string'
+            ? tech.detail_name.split(',')
+            : tech.detail_name,
       }));
       setTechnologies(parsed);
     }
@@ -180,31 +174,44 @@ export default function SmartFilter({
                         {technologies
                           ?.filter((tech) => tech.technology_id === clickedMenu)
                           .flatMap((tech) =>
-                            tech.detail_name.map((detail, index) => (
-                              <li
-                                key={`${tech.technology_id}-${index}`}
-                                onClick={() => handleDetailClick(detail)}
-                              >
-                                <button
-                                  className={`flex h-[32px] px-[8px] justify-center items-center rounded-[16px]
-                                ${
-                                  selectedDetails.includes(detail)
-                                    ? 'bg-[#ff6948] border-[#ff6948]'
-                                    : 'bg-[#fff] border-[#ececf1] border'
-                                }`}
-                                >
-                                  <span
-                                    className={`text-center text-[13px] font-normal ${
-                                      selectedDetails.includes(detail)
-                                        ? 'text-[#fff]'
-                                        : 'text-[#38383d]'
-                                    }`}
-                                  >
-                                    {detail}
-                                  </span>
-                                </button>
-                              </li>
-                            ))
+                            Array.isArray(tech.detail_name)
+                              ? tech.detail_name.map((detail, index) => {
+                                  const isSelected =
+                                    selectedDetails.includes(detail);
+                                  const updated = isSelected
+                                    ? selectedDetails.filter(
+                                        (d) => d !== detail
+                                      )
+                                    : [...selectedDetails, detail];
+
+                                  return (
+                                    <li key={`${tech.technology_id}-${detail}`}>
+                                      <button
+                                        onClick={() => {
+                                          onSelectDetail(updated);
+                                          setSelectedDetails(updated);
+                                        }}
+                                        className={`flex h-[32px] px-[8px] justify-center items-center rounded-[16px]
+                                              ${
+                                                isSelected
+                                                  ? 'bg-[#ff6948] border-[#ff6948]'
+                                                  : 'bg-[#fff] border border-[#ececf1]'
+                                              }`}
+                                      >
+                                        <span
+                                          className={`text-center text-[13px] font-normal ${
+                                            isSelected
+                                              ? 'text-[#fff]'
+                                              : 'text-[#38383d]'
+                                          }`}
+                                        >
+                                          {detail}
+                                        </span>
+                                      </button>
+                                    </li>
+                                  );
+                                })
+                              : []
                           )}
                       </ul>
                     </div>

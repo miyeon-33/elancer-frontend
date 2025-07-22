@@ -38,12 +38,12 @@ export default function Chatbot() {
     <>
       <button
         onClick={toggleChatbot}
-        className="bg-amber-600 w-[60px] text-[#fff] h-[60px] z-61 fixed bottom-[100px] right-[50px] rounded-[30px]"
+        className="bg-amber-600 w-[60px] text-[#fff] h-[60px] z-61 fixed bottom-[100px] right-[50px] rounded-[30px] max-sm:right-[30px] max-sm:bottom-[80px]"
       >
         챗봇
       </button>
       {isOpen && (
-        <div className="fixed bottom-[160px] right-[50px] max-w-[400px] h-[500px] bg-[#f5f5f5] border border-gray-300 rounded-[10px] w-full z-60">
+        <div className="fixed bottom-[160px] right-[50px] max-w-[400px] h-[500px] bg-[#f5f5f5] border border-gray-300 rounded-[10px] w-full z-60 max-sm:w-[250px] max-sm:right-[30px] max-sm:bottom-[140px]">
           <div className="overflow-auto p-[20px] h-[calc(100%-50px)] scroll-w-[5px]">
             <div className="flex items-center justify-between">
               <h2 className="text-[20px] font-bold">OpenAi 챗봇</h2>

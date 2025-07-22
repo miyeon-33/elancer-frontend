@@ -30,6 +30,7 @@ type SortOption = 'latest' | 'deadline' | 'startDate';
 
 export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
   const [count, setCount] = useState(1); // 더보기 클릭 횟수
+
   const [selectedDetails, setSelectedDetails] = useState<string[]>([]); // 상세기술 키워드
   const [selectedProficiencies, setSelectedProficiencies] = useState<string[]>(
     []
@@ -164,19 +165,21 @@ export default function ProjectBox({ selectedCategoryId }: ProjectBoxProps) {
             onSortChange={setSortBy}
           />
         </div>
-        <MobileSmartFilter
-          selectedDetails={selectedDetails}
-          onSelectDetail={handleDetailFilter}
-          onToggleProficiency={handleToggleProficiency}
-          selectedProficiencies={selectedProficiencies}
-          onToggleDuration={toggleDuration}
-          selectedDurations={selectedDurations}
-          selectedLocation={selectedLocation}
-          onSelectedLocation={setSelectedLocation}
-          onApplyFilters={() => {
-            setIsFilterApplied(true);
-          }}
-        />
+        <div className="hidden max-sm:block">
+          <MobileSmartFilter
+            selectedDetails={selectedDetails}
+            onSelectDetail={handleDetailFilter}
+            onToggleProficiency={handleToggleProficiency}
+            selectedProficiencies={selectedProficiencies}
+            onToggleDuration={toggleDuration}
+            selectedDurations={selectedDurations}
+            selectedLocation={selectedLocation}
+            onSelectedLocation={setSelectedLocation}
+            onApplyFilters={() => {
+              setIsFilterApplied(true);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

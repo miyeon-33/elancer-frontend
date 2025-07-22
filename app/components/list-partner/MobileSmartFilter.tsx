@@ -457,6 +457,8 @@ export default function MobileSmartFilter({
             </button>
             <button
               onClick={() => {
+                setIsUp(false);
+
                 onApplyFilters();
               }}
               className={`flex w-[165px] h-[44px] py-[16px] px-[24px] justify-center items-center gap-[6px] rounded-[6px] border-[#ececf1]  text-center font-bold text-[16px] text-[#fff] ${
