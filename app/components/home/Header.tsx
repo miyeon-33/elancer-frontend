@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-[#f6f7f9] border-b border-[#ececf1] z-20 w-full">
-      <div className="h-[76px] justify-between px-[20px] mx-auto flex items-center max-sm:max-w-[768px] max-sm:flex-col max-sm:items-start max-sm:h-auto relative max-w-[1200px]">
+      <div className="h-[76px] justify-between px-[20px] mx-auto flex items-center max-sm:flex-col max-sm:items-start max-sm:h-auto relative max-w-[1200px]">
         {/* 모바일 사이드메뉴 */}
         {isSideOpen && (
           <>
@@ -245,181 +245,188 @@ export default function Header() {
           </>
         )}
         {/* GNB */}
-        <ul className="inline-flex justify-center items-start gap-[24px] max-sm:flex max-sm:items-center max-sm:gap-[16px] max-sm:h-[55px]">
-          <li className="inline-block">
-            <Link href="#" className="text-[#2a2b2e] text-[16px] font-bold">
-              프리랜서
-            </Link>
-          </li>
-          <li className="inline-block">
-            <Link
-              href="/list-partner"
-              className="text-[#2a2b2e] text-[16px] font-bold"
-            >
-              상주 프로젝트
-            </Link>
-          </li>
-          <li className="inline-block">
-            <Link
-              href="/list-partner?pf=턴키"
-              className="text-[#2a2b2e] text-[16px] font-bold"
-            >
-              재택 프로젝트
-            </Link>
-          </li>
-          <li className="inline-block relative group">
-            <Link href="#" className="text-[#2a2b2e] text-[16px] font-bold">
-              블로그
-            </Link>
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:inline-flex p-[8px] flex-col items-start rounded-[8px] border border-[rgba(236,236,241)] bg-[rgba(255,255,255)] shadow-[rgba(0px_0px_0px_0.08px)_0px_4px_8px_0px] mt-[8px]"
-              onMouseEnter={(e) => e.currentTarget.classList.add('inline-flex')}
-              onMouseLeave={(e) =>
-                e.currentTarget.classList.remove('inline-flex')
-              }
-            >
+        <div className="overflow-x-auto max-sm:w-[389px]">
+          <ul className="inline-flex justify-center items-start gap-[24px] max-sm:flex max-sm:items-center max-sm:gap-[16px] max-sm:h-[55px] flex-nowrap whitespace-nowrap min-w-max">
+            <li className="inline-block">
               <Link
                 href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)] hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
+                className="text-[#2a2b2e] text-[16px] font-bold break-keep"
               >
-                ALL NEW
+                프리랜서
               </Link>
+            </li>
+            <li className="inline-block">
+              <Link
+                href="/list-partner"
+                className="text-[#2a2b2e] text-[16px] font-bold break-keep"
+              >
+                상주 프로젝트
+              </Link>
+            </li>
+            <li className="inline-block">
+              <Link
+                href="/list-partner?pf=턴키"
+                className="text-[#2a2b2e] text-[16px] font-bold break-keep"
+              >
+                재택 프로젝트
+              </Link>
+            </li>
+            <li className="inline-block relative group">
               <Link
                 href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                className="text-[#2a2b2e] text-[16px] font-bold break-keep"
+              >
+                블로그
+              </Link>
+              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden sm:group-hover:inline-flex p-[8px] flex-col items-start rounded-[8px] border border-[rgba(236,236,241)] bg-[rgba(255,255,255)] shadow-[rgba(0px_0px_0px_0.08px)_0px_4px_8px_0px] mt-[8px]">
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)] hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
+                >
+                  ALL NEW
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                개발테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  개발테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                디자인 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  디자인 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                구매 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  구매 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                인사 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  인사 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                홍보 & 마케팅 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  홍보 & 마케팅 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                물류 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  물류 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                전략 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  전략 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                제조 테크
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  제조 테크
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                Balance UP
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  Balance UP
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                박우진 칼럼
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  박우진 칼럼
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                실리콘밸리 AI 칼럼
-              </Link>
-            </div>
-          </li>
-          <li className="inline-block relative group">
-            <Link href="#" className="text-[#2a2b2e] text-[16px] font-bold">
-              커뮤니티
-            </Link>
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:inline-flex p-[8px] flex-col items-start rounded-[8px] border border-[rgba(236,236,241)] bg-[rgba(255,255,255)] shadow-[rgba(0px_0px_0px_0.08px)_0px_4px_8px_0px] mt-[8px]"
-              onMouseEnter={(e) => e.currentTarget.classList.add('inline-flex')}
-              onMouseLeave={(e) =>
-                e.currentTarget.classList.remove('inline-flex')
-              }
-            >
+                >
+                  실리콘밸리 AI 칼럼
+                </Link>
+              </div>
+            </li>
+            <li className="inline-block relative group">
               <Link
                 href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                className="text-[#2a2b2e] text-[16px] font-bold break-keep"
+              >
+                커뮤니티
+              </Link>
+              <div
+                className="absolute left-1/2 -translate-x-1/2 top-full hidden sm:group-hover:inline-flex p-[8px] flex-col items-start rounded-[8px] border border-[rgba(236,236,241)] bg-[rgba(255,255,255)] shadow-[rgba(0px_0px_0px_0.08px)_0px_4px_8px_0px] mt-[8px]"
+                onMouseEnter={(e) =>
+                  e.currentTarget.classList.add('inline-flex')
+                }
+                onMouseLeave={(e) =>
+                  e.currentTarget.classList.remove('inline-flex')
+                }
+              >
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                이랜서 NEWS
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  이랜서 NEWS
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)] break-keep
                 whitespace-nowrap flex-nowrap"
-              >
-                이랜서 런클럽 (ERC)
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  이랜서 런클럽 (ERC)
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                이베프
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  이베프
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                언론보도
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  언론보도
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                이랜서 생각
-              </Link>
-              <Link
-                href="#"
-                className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
+                >
+                  이랜서 생각
+                </Link>
+                <Link
+                  href="#"
+                  className="w-[136px] py-[6px] px-[12px] flex items-center text-[rgb(27_28_30)] text-[14px] font-normal hover:text-[rgb(255,105,72)]
                 hover:font-bold hover:rounded-[6px] hover:bg-[rgb(246,247,249)]"
-              >
-                이랜서 소리함
-              </Link>
-            </div>
-          </li>
-        </ul>
+                >
+                  이랜서 소리함
+                </Link>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div className="flex items-center gap-[12px] max-sm:hidden">
           <button type="button" onClick={() => setIsMenuOpen(true)}>
             <img src="/images/icons/search.808d692a.svg" className="w-[25px]" />
